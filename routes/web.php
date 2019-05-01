@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/setpassword', function () {
+    return view('editpw');
+});
+
+Route::patch('/user/{user}', 'UserController@update');
+
 Route::get('/join', function (Request $request) {
     $queryString = [
         'client_id' => env('CLIENT_ID'),
@@ -34,7 +40,7 @@ Route::get('/join', function (Request $request) {
 
     $user = json_decode($res->getBody(), true);
 
-    User::create([
+    $user = User::create([
         'slack_id' => $user['user']['id'],
         'name' => $user['user']['name'],
         'email' => $user['user']['email'],
@@ -42,5 +48,5 @@ Route::get('/join', function (Request $request) {
         'blocked' => true,
     ]);
 
-    return 'OK';
+    return redirect('setpassword')->with('user_id', $user->id);
 });
