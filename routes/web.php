@@ -14,3 +14,33 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/join', function (Request $request) {
+    $queryString = [
+        'client_id' => env('CLIENT_ID'),
+        'client_secret' => env('CLIENT_SECRET'),
+        'code' => $request->get('code'),
+    ];
+    $url = 'https://slack.com/api/oauth.access';
+
+    $client = new \GuzzleHttp\Client();
+    $res = $client->request('GET', $url . '?' . http_build_query($queryString));
+
+    $oauthAccess = json_decode($res->getBody(), true);
+    $token = $oauthAccess['access_token'];
+
+    $url = 'https://slack.com/api/users.identity?token=' . $token;
+    $res = $client->request('GET', $url);
+
+    $user = json_decode($res->getBody(), true);
+
+    User::create([
+        'slack_id' => $user['user']['id'],
+        'name' => $user['user']['name'],
+        'email' => $user['user']['email'],
+        'avatar' => $user['user']['image_512'],
+        'blocked' => true,
+    ]);
+
+    return 'OK';
+});
