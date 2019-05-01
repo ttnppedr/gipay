@@ -14,18 +14,6 @@ class CommandsController extends Controller
 
         $text = explode(',', $request['text']);
 
-        if (count($text) === 1) {
-            return response()->json(["text" => "交易失敗，格式錯誤"]);
-        }
-
-        if (!$this->checkWhoIsCorrectFormat($text[0])) {
-            return response()->json(["text" => "交易失敗，Who 格式錯誤"]);
-        }
-
-        if (!$this->checkAmountIsCorrect($text[1])) {
-            return response()->json(["text" => "交易失敗，Amount 格式錯誤"]);
-        }
-
         return response()->json($this->getPayResponse($text));
     }
 
@@ -77,16 +65,6 @@ class CommandsController extends Controller
         }
 
         return response()->json(["text" => "某些地方似乎出錯了"]);
-    }
-
-    private function checkWhoIsCorrectFormat($who): bool
-    {
-        return preg_match("/^<@\w+\|\w+>$/", $who) ? true : false;
-    }
-
-    private function checkAmountIsCorrect($amount): bool
-    {
-        return preg_match("/^[0-9]+$/", $amount) ? true : false;
     }
 
     private function getPasswordResponse($times, $password, $value = null): array
