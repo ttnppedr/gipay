@@ -17,5 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/pay', 'CommandsController@pay');
+Route::post('/pay', 'CommandsController@pay')->middleware('CheckFormatIsCorrect');
 Route::post('/callback', 'CommandsController@callback');
