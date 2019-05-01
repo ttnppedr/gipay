@@ -1,5 +1,9 @@
 <?php
 
+use App\User;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +33,7 @@ Route::get('/join', function (Request $request) {
     ];
     $url = 'https://slack.com/api/oauth.access';
 
-    $client = new \GuzzleHttp\Client();
+    $client = new Client();
     $res = $client->request('GET', $url . '?' . http_build_query($queryString));
 
     $oauthAccess = json_decode($res->getBody(), true);
