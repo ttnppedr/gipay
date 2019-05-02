@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+const TIMEOUT_SECOND = 300;
+
 class CommandsController extends Controller
 {
     public function pay(Request $request)
@@ -17,10 +19,10 @@ class CommandsController extends Controller
 
         $trigger = Trigger::create(['trigger_id' => $request['trigger_id']]);
 
-        return response()->json($this->getPayResponse($text));
+        return response()->json($this->getPayResponse($text, $trigger->id));
     }
 
-    private function getPayResponse(array $text): array
+    private function getPayResponse(array $text, $id): array
     {
         return [
             "text" => "付錢囉～",
@@ -29,9 +31,9 @@ class CommandsController extends Controller
                     "text" => "您確定要將 {$text[1]} 元給 {$text[0]} 嗎？",
                     "callback_id" => "confirm_transaction",
                     "color" => "#ff0000",
-                    'actions' => [
-                        ['name' => 'yes', 'text' => '確定', 'type' => 'button', 'value' => 'yes', 'style' => 'danger'],
-                        ['name' => 'no', 'text' => '讓我想想', 'type' => 'button', 'value' => 'no', 'style' => 'primary'],
+                    "actions" => [
+                        ["name" => "{$id}|yes", "text" => "確定", "type" => "button", "value" => "yes", "style" => "danger"],
+                        ["name" => "{$id}|no", "text" => "讓我想想", "type" => "button", "value" => "no", "style" => "primary"],
                     ]
                 ]
             ]
@@ -44,20 +46,27 @@ class CommandsController extends Controller
 
         $payload = json_decode($request['payload'], true);
 
+        $name = explode('|', $payload['actions'][0]['name']);;
+
+        $trigger = Trigger::find($name[0]);
+        if ($trigger->created_at->diffInSeconds() > TIMEOUT_SECOND) {
+            return response()->json(["text" => "交易失敗，操作逾時"]);
+        }
+
         $user = User::where('slack_id', '=', $payload['user']['id'])->first();
 
         if ($payload['callback_id'] === 'confirm_transaction') {
-            if ($payload['actions'][0]['name'] === 'no') {
+            if ($name[1] === 'no') {
                 return response()->json(["text" => "OK，讓你想想～"]);
             }
 
-            if ($payload['actions'][0]['name'] === 'yes') {
-                return response()->json($this->getPasswordResponse(1, $user->password));
+            if ($name[1] === 'yes') {
+                return response()->json($this->getPasswordResponse("{$name[0]}|1", $user->password));
             }
         }
 
         if ($payload['callback_id'] === 'confirm_password') {
-            if ($payload['actions'][0]['name'] === '4') {
+            if ($name[1] === '4') {
                 if ($payload['actions'][0]['value'] == $user->password) {
                     return response()->json(["text" => "完成交易"]);
                 } else {
@@ -71,7 +80,7 @@ class CommandsController extends Controller
                     return response()->json(["text" => "完成失敗，密碼錯誤，可以嘗試次數剩下{$errors}次"]);
                 }
             }
-            return response()->json($this->getPasswordResponse($payload['actions'][0]['name'] + 1, $user->password, $payload['actions'][0]['value']));
+            return response()->json($this->getPasswordResponse("{$name[0]}|" . ($name[1] + 1), $user->password, $payload['actions'][0]['value']));
         }
 
         return response()->json(["text" => "某些地方似乎出錯了"]);
@@ -79,6 +88,8 @@ class CommandsController extends Controller
 
     private function getPasswordResponse($name, $password, $value = null): array
     {
+        $name = explode('|', $name);
+
         $pwd = [];
         for ($i = 0; $i < strlen($password); $i++) {
             $pwd[$i] = substr($password, $i, 1);
@@ -86,7 +97,7 @@ class CommandsController extends Controller
 
         $number = [];
         for ($i = 0; $i < 10; $i++) {
-            if ($i == $pwd[$name - 1]) {
+            if ($i == $pwd[$name[1] - 1]) {
                 continue;
             }
             $number[] = $i;
@@ -94,10 +105,10 @@ class CommandsController extends Controller
         shuffle($number);
 
         $btn = [];
-        $btn[0] = $this->getResponseAction($name, $pwd[$name - 1], $value);
+        $btn[0] = $this->getResponseAction(implode('|', $name), $pwd[$name[1] - 1], $value);
 
         for ($i = 1; $i < 5; $i++) {
-            $btn[$i] = $this->getResponseAction($name, array_pop($number), $value);
+            $btn[$i] = $this->getResponseAction(implode('|', $name), array_pop($number), $value);
         }
         shuffle($btn);
 
@@ -105,7 +116,7 @@ class CommandsController extends Controller
             "text" => "請輸入密碼：",
             "attachments" => [
                 [
-                    "text" => "第 {$name} 碼",
+                    "text" => "第 {$name[1]} 碼",
                     "callback_id" => "confirm_password",
                     "color" => "#ff0000",
                     'actions' => $btn
