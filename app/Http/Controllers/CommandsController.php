@@ -77,7 +77,7 @@ class CommandsController extends Controller
         return response()->json(["text" => "某些地方似乎出錯了"]);
     }
 
-    private function getPasswordResponse($times, $password, $value = null): array
+    private function getPasswordResponse($name, $password, $value = null): array
     {
         $pwd = [];
         for ($i = 0; $i < strlen($password); $i++) {
@@ -86,7 +86,7 @@ class CommandsController extends Controller
 
         $number = [];
         for ($i = 0; $i < 10; $i++) {
-            if ($i == $pwd[$times - 1]) {
+            if ($i == $pwd[$name - 1]) {
                 continue;
             }
             $number[] = $i;
@@ -94,10 +94,10 @@ class CommandsController extends Controller
         shuffle($number);
 
         $btn = [];
-        $btn[0] = $this->getResponseAction($times, $pwd[$times - 1], $value);
+        $btn[0] = $this->getResponseAction($name, $pwd[$name - 1], $value);
 
         for ($i = 1; $i < 5; $i++) {
-            $btn[$i] = $this->getResponseAction($times, array_pop($number), $value);
+            $btn[$i] = $this->getResponseAction($name, array_pop($number), $value);
         }
         shuffle($btn);
 
@@ -105,7 +105,7 @@ class CommandsController extends Controller
             "text" => "請輸入密碼：",
             "attachments" => [
                 [
-                    "text" => "第 {$times} 碼",
+                    "text" => "第 {$name} 碼",
                     "callback_id" => "confirm_password",
                     "color" => "#ff0000",
                     'actions' => $btn
