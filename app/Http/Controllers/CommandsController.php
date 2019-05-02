@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Trigger;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,6 +14,8 @@ class CommandsController extends Controller
         Log::debug(json_encode(urldecode($request->getContent()), JSON_UNESCAPED_SLASHES));
 
         $text = explode(',', $request['text']);
+
+        $trigger = Trigger::create(['trigger_id' => $request['trigger_id']]);
 
         return response()->json($this->getPayResponse($text));
     }
