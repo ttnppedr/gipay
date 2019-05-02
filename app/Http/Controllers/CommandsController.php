@@ -125,10 +125,10 @@ class CommandsController extends Controller
         ];
     }
 
-    private function getResponseAction($times, $num, $value): array
+    private function getResponseAction($name, $num, $value): array
     {
         return [
-            "name" => $times, "text" => "$num", "type" => "button", "value" => $value === null ? "$num" : "{$value}$num"
+            "name" => $name, "text" => "$num", "type" => "button", "value" => $value === null ? "$num" : "{$value}$num"
         ];
     }
 }
