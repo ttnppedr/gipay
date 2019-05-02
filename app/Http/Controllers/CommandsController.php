@@ -41,7 +41,8 @@ class CommandsController extends Controller
 
         $payload = json_decode($request['payload'], true);
 
-        $password = User::where('slack_id', '=', $payload['user']['id'])->first()->password;
+        $user = User::where('slack_id', '=', $payload['user']['id'])->first();
+        $password = $user->password;
 
         if ($payload['callback_id'] === 'confirm_transaction') {
             if ($payload['actions'][0]['name'] === 'no') {
@@ -58,7 +59,14 @@ class CommandsController extends Controller
                 if ($payload['actions'][0]['value'] == $password) {
                     return response()->json(["text" => "完成交易"]);
                 } else {
-                    return response()->json(["text" => "完成失敗，密碼錯誤"]);
+                    $user->increment('password_errors');
+
+                    if (($errors = $user->password_errors % 3) === 0) {
+                        $user->update(['blocked' => true]);
+                        return response()->json(["text" => "完成失敗，密碼錯誤，帳號被鎖住了"]);
+                    }
+                    $errors = 3 - $errors;
+                    return response()->json(["text" => "完成失敗，密碼錯誤，可以嘗試次數剩下{$errors}次"]);
                 }
             }
             return response()->json($this->getPasswordResponse($payload['actions'][0]['name'] + 1, $password, $payload['actions'][0]['value']));
