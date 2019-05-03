@@ -21,3 +21,4 @@ Route::post('/pay', 'CommandsController@pay')->middleware('CheckFormatIsCorrect'
 Route::post('/callback', 'CommandsController@callback');
 
 Route::post('/login', 'AdminController@login');
+Route::post('/deposit/{toUser}', 'AdminController@deposit');

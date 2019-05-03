@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Order extends Model
 {
     protected $guarded = [];
 
-    protected $hidden = [
-        'password'
+    protected $casts = [
+        'type' => 'integer',
     ];
 }

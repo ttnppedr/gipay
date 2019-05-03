@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Token;
+use App\Order;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -24,5 +26,29 @@ class AdminController extends Controller
         }
 
         return ['message' => 'email or password error'];
+    }
+
+    public function deposit(User $toUser)
+    {
+        $token = request()->bearerToken();
+        if ($token && !Token::where('token', $token)->exists()) {
+            return ['message' => 'token error'];
+        }
+
+        request()->validate([
+            'amount' => 'required|numeric|min:1',
+        ]);
+
+        return DB::transaction(function () use ($toUser) {
+            $order = Order::create([
+                'type' => '1',
+                'to_user_id' => $toUser->id,
+                'amount' => request('amount'),
+            ]);
+
+            $toUser->update(['balance' => $toUser->balance + request('amount')]);
+
+            return ['order' => $order, 'to_user' => $toUser];
+        });
     }
 }
