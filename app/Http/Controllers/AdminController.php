@@ -51,4 +51,32 @@ class AdminController extends Controller
             return ['order' => $order, 'to_user' => $toUser];
         });
     }
+
+    public function withdraw(User $toUser)
+    {
+        $token = request()->bearerToken();
+        if ($token && !Token::where('token', $token)->exists()) {
+            return ['message' => 'token error'];
+        }
+
+        request()->validate([
+            'amount' => 'required|numeric|min:1',
+        ]);
+
+        if ($toUser->balance - request('amount') < 0) {
+            return ['message' => '餘額不足'];
+        }
+
+        return DB::transaction(function () use ($toUser) {
+            $order = Order::create([
+                'type' => '2',
+                'to_user_id' => $toUser->id,
+                'amount' => request('amount'),
+            ]);
+
+            $toUser->update(['balance' => $toUser->balance - request('amount')]);
+
+            return ['order' => $order, 'to_user' => $toUser];
+        });
+    }
 }
