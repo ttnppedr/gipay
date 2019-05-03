@@ -72,11 +72,12 @@ class CommandsController extends Controller
                 } else {
                     $user->increment('password_errors');
 
-                    if (($errors = $user->password_errors % 3) === 0) {
-                        $user->update(['blocked' => true]);
+                    if ($user->password_errors >= 3) {
+                        $user->update(['password_errors' => 0, 'blocked' => true]);
                         return response()->json(["text" => "完成失敗，密碼錯誤，帳號被鎖住了"]);
                     }
-                    $errors = 3 - $errors;
+
+                    $errors = 3 - $user->password_errors;
                     return response()->json(["text" => "完成失敗，密碼錯誤，可以嘗試次數剩下{$errors}次"]);
                 }
             }
