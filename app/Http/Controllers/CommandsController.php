@@ -48,7 +48,7 @@ class CommandsController extends Controller
 
         $name = explode('|', $payload['actions'][0]['name']);;
 
-        $trigger = Trigger::find($name[0]);
+        $trigger = Trigger::findOrFail($name[0]);
         if ($trigger->created_at->diffInSeconds() > TIMEOUT_SECOND) {
             return response()->json(["text" => "交易失敗，操作逾時"]);
         }
