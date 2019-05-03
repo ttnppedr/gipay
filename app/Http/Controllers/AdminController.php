@@ -31,7 +31,7 @@ class AdminController extends Controller
     public function deposit(User $toUser)
     {
         $token = request()->bearerToken();
-        if ($token && !Token::where('token', $token)->exists()) {
+        if (!$token || !Token::where('token', $token)->exists()) {
             return ['message' => 'token error'];
         }
 
@@ -55,7 +55,7 @@ class AdminController extends Controller
     public function withdraw(User $toUser)
     {
         $token = request()->bearerToken();
-        if ($token && !Token::where('token', $token)->exists()) {
+        if (!$token || !Token::where('token', $token)->exists()) {
             return ['message' => 'token error'];
         }
 
