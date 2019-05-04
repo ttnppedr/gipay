@@ -30,4 +30,16 @@ class UserController extends Controller
 
         return User::paginate($row)->appends(['row' => $row]);
     }
+
+    public function block(User $user)
+    {
+        $token = request()->bearerToken();
+        if (!$token || !Token::where('token', $token)->exists()) {
+            return ['message' => 'token error'];
+        }
+
+        $user->update(['blocked' => true]);
+
+        return $user->fresh();
+    }
 }

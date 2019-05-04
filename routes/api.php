@@ -25,3 +25,4 @@ Route::post('/deposit/{toUser}', 'AdminController@deposit');
 Route::post('/withdraw/{toUser}', 'AdminController@withdraw');
 
 Route::get('/admin/users', 'UserController@index');
+Route::patch('/admin/block/user/{user}', 'UserController@block');
