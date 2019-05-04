@@ -27,3 +27,5 @@ Route::post('/withdraw/{toUser}', 'AdminController@withdraw');
 Route::get('/admin/users', 'UserController@index');
 Route::patch('/admin/block/user/{user}', 'UserController@block');
 Route::patch('/admin/unblock/user/{user}', 'UserController@unblock');
+
+Route::get('/admin/orders', 'OrderController@index');
