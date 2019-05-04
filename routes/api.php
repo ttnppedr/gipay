@@ -23,3 +23,5 @@ Route::post('/callback', 'CommandsController@callback');
 Route::post('/login', 'AdminController@login');
 Route::post('/deposit/{toUser}', 'AdminController@deposit');
 Route::post('/withdraw/{toUser}', 'AdminController@withdraw');
+
+Route::get('/admin/users', 'UserController@index');
