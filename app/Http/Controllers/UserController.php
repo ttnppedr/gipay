@@ -42,4 +42,16 @@ class UserController extends Controller
 
         return $user->fresh();
     }
+
+    public function unblock(User $user)
+    {
+        $token = request()->bearerToken();
+        if (!$token || !Token::where('token', $token)->exists()) {
+            return ['message' => 'token error'];
+        }
+
+        $user->update(['blocked' => false]);
+
+        return $user->fresh();
+    }
 }
