@@ -40,6 +40,41 @@ class CommandsController extends Controller
         ];
     }
 
+    public function record(Request $request)
+    {
+        Log::debug($request);
+
+        $orders = User::slack($request['user_id'])->first()->orders()->orderByDesc('created_at')->take(5)->get();
+
+        $attachments = [];
+        foreach ($orders as $order) {
+            switch ($order['type']) {
+                case 1:
+                    $attachments[] = $this->setRecord("日期：{$order['created_at']->toDateTimeString()}",
+                        "存放 {$order['amount']} 元");
+                    break;
+                case 2:
+                    $attachments[] = $this->setRecord("日期：{$order['created_at']->toDateTimeString()}",
+                        "提取 {$order['amount']} 元");
+                    break;
+                case 3:
+                    $attachments[] = $this->setRecord("日期：{$order['created_at']->toDateTimeString()}",
+                        "`<@{$order->to->slack_id}>` 轉給 `<@{$order->from->slack_id}>` {$order['amount']} 元");
+                    break;
+            }
+        }
+
+        return response()->json([
+            "text" => "查看前 " . count($attachments) . " 筆交易記錄",
+            "attachments" => $attachments,
+        ]);
+    }
+
+    private function setRecord($title, $text)
+    {
+        return ["title" => $title, "text" => $text];
+    }
+
     public function callback(Request $request)
     {
         Log::debug(str_replace('\\', '', json_encode(urldecode($request['payload']), JSON_UNESCAPED_SLASHES)));

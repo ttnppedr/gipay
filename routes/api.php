@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/pay', 'CommandsController@pay')->middleware('CheckFormatIsCorrect', 'CheckAccountIsBlocked');
+Route::post('/record', 'CommandsController@record');
 Route::post('/callback', 'CommandsController@callback');
 
 Route::post('/login', 'AdminController@login');
