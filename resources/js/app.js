@@ -21,6 +21,11 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('admin-login', require('./components/AdminLogin.vue').default);
+Vue.component('admin-index', require('./components/AdminIndex.vue').default);
+
+import VueCookies from 'vue-cookies';
+Vue.use(VueCookies);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

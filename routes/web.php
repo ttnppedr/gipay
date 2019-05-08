@@ -25,6 +25,14 @@ Route::get('/setpassword', function () {
 
 Route::patch('/user/{user}', 'UserController@update');
 
+Route::get('/admin-login', function () {
+    return view('admin-login');
+});
+
+Route::get('/admin-index', function () {
+    return view('admin-index');
+});
+
 Route::get('/join', function (Request $request) {
     $queryString = [
         'client_id' => env('CLIENT_ID'),
