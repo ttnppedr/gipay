@@ -33,6 +33,10 @@ Route::get('/admin-index', function () {
     return view('admin-index');
 });
 
+Route::get('/admin-users', function () {
+    return view('admin-users');
+});
+
 Route::get('/join', function (Request $request) {
     $queryString = [
         'client_id' => env('CLIENT_ID'),

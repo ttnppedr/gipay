@@ -5,7 +5,7 @@
 <template>
     <div v-if="token">
         <div>
-            <span><a href="#">Users</a></span>
+            <span><a href="/admin-users">Users</a></span>
         </div>
         <div>
             <span><a href="#">Orders</a></span>

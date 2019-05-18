@@ -23,6 +23,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-login', require('./components/AdminLogin.vue').default);
 Vue.component('admin-index', require('./components/AdminIndex.vue').default);
+Vue.component('admin-users', require('./components/AdminUsers.vue').default);
 
 import VueCookies from 'vue-cookies';
 Vue.use(VueCookies);
