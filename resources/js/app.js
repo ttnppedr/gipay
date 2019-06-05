@@ -24,6 +24,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('admin-login', require('./components/AdminLogin.vue').default);
 Vue.component('admin-index', require('./components/AdminIndex.vue').default);
 Vue.component('admin-users', require('./components/AdminUsers.vue').default);
+Vue.component('admin-orders', require('./components/AdminOrders.vue').default);
 
 import VueCookies from 'vue-cookies';
 Vue.use(VueCookies);

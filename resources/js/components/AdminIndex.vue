@@ -8,7 +8,7 @@
             <span><a href="/admin-users">Users</a></span>
         </div>
         <div>
-            <span><a href="#">Orders</a></span>
+            <span><a href="/admin-orders">Orders</a></span>
         </div>
     </div>
 </template>

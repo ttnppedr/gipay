@@ -31,6 +31,6 @@ class OrderController extends Controller
             return $query->where('from_user_id', $fromUserId);
         })->when($toUserId, function ($query, $toUserId) {
             return $query->where('to_user_id', $toUserId);
-        })->orderBy('created_at', 'desc')->paginate($row)->appends($appends);
+        })->orderBy('created_at', 'desc')->with('from', 'to')->paginate($row)->appends($appends);
     }
 }
