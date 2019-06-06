@@ -65,7 +65,7 @@ class CommandsController extends Controller
                     break;
                 case 3:
                     $attachments[] = $this->setRecord("日期：{$order['created_at']->toDateTimeString()}",
-                        "`<@{$order->to->slack_id}>` 轉給 `<@{$order->from->slack_id}>` {$order['amount']} 元");
+                        "`<@{$order->from->slack_id}>` 轉給 `<@{$order->to->slack_id}>` {$order['amount']} 元");
                     break;
             }
         }
