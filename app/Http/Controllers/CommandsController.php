@@ -17,7 +17,11 @@ class CommandsController extends Controller
 
         $text = explode(',', $request['text']);
 
-        $trigger = Trigger::create(['trigger_id' => $request['trigger_id']]);
+        $trigger = Trigger::create([
+            'trigger_id' => $request['trigger_id'],
+            'user_id' => User::where('slack_id', substr($text[0], 2, 9))->first()->id,
+            'amount' => $text[1],
+        ]);
 
         return response()->json($this->getPayResponse($text, $trigger->id));
     }
