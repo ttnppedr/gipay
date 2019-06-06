@@ -50,7 +50,7 @@ class CommandsController extends Controller
     {
         Log::debug($request);
 
-        $orders = User::slack($request['user_id'])->first()->orders()->orderByDesc('created_at')->take(5)->get();
+        $orders = User::slack($request['user_id'])->first()->orders()->orderByDesc('created_at', 'desc')->take(5)->get();
 
         $attachments = [];
         foreach ($orders as $order) {
