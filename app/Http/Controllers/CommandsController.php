@@ -131,7 +131,7 @@ class CommandsController extends Controller
                             ]);
 
                             $toUser->update(['balance' => $toUser->balance + $amount]);
-                            $toUser->update(['balance' => $user->balance - $amount]);
+                            $user->update(['balance' => $user->balance - $amount]);
                         });
                     } catch (\Exception $e) {
                         return response()->json(["text" => "完成失敗，資料庫錯誤"]);
