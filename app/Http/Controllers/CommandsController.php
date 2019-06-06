@@ -78,7 +78,8 @@ class CommandsController extends Controller
 
     public function balance(Request $request)
     {
-        return response()->json(['text' => '你的額額為' . User::slack($request['user_id'])->first()->balance . '元']);
+        return response()->json([
+            'text' => '餘額 ' . User::slack($request['user_id'])->first()->balance . ' 元']);
     }
 
     private function setRecord($title, $text)
