@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Trigger;
 use App\User;
+use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 const TIMEOUT_SECOND = 300;
@@ -107,6 +109,28 @@ class CommandsController extends Controller
         if ($payload['callback_id'] === 'confirm_password') {
             if ($name[1] === '4') {
                 if ($payload['actions'][0]['value'] == $user->password) {
+                    $toUser = User::find($trigger->user_id);
+                    $amount = $trigger->amount;
+
+                    if ($user->balance - $amount < 0) {
+                        return response()->json(["text" => "完成失敗，餘額不足"]);
+                    }
+
+                    try {
+                        DB::transaction(function () use ($user, $toUser, $amount) {
+                            Order::create([
+                                'type' => 3,
+                                'from_user_id' => $user->id,
+                                'to_user_id' => $toUser->id,
+                                'amount' => $amount,
+                            ]);
+
+                            $toUser->update(['balance' => $toUser->balance + $amount]);
+                            $toUser->update(['balance' => $user->balance - $amount]);
+                        });
+                    } catch (\Exception $e) {
+                        return response()->json(["text" => "完成失敗，資料庫錯誤"]);
+                    }
                     return response()->json(["text" => "完成交易"]);
                 } else {
                     $user->increment('password_errors');
