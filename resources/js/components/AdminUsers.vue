@@ -43,7 +43,7 @@ export default {
         }
     },
     mounted() {
-        axios.get('/api/admin/users', {
+        axios.get('https://gipay.xyz/api/admin/users', {
             headers: {
                     'Authorization': `Bearer ${this.token}`,
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export default {
     },
     methods: {
         setBlock(userId, userBlocked, userName) {
-            let url = (userBlocked === 0) ? `/api/admin/unblock/user/${userId}` : `/api/admin/block/user/${userId}`;
+            let url = (userBlocked === 0) ? `https://gipay.xyz/api/admin/unblock/user/${userId}` : `https://gipay.xyz/api/admin/block/user/${userId}`;
             console.log(url);
             axios.patch(url, {}, {
                 headers: {

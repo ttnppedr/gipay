@@ -1831,7 +1831,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     login: function login(event) {
-      axios.post('/api/login', {
+      axios.post('https://gipay.xyz/api/login', {
         email: this.email,
         password: this.password
       }).then(function (response) {
@@ -1899,7 +1899,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/admin/orders', {
+    axios.get('https://gipay.xyz/api/admin/orders', {
       headers: {
         'Authorization': "Bearer ".concat(this.token),
         'Content-Type': 'application/json',
@@ -1989,7 +1989,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/admin/users', {
+    axios.get('https://gipay.xyz/api/admin/users', {
       headers: {
         'Authorization': "Bearer ".concat(this.token),
         'Content-Type': 'application/json',
@@ -2003,7 +2003,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setBlock: function setBlock(userId, userBlocked, userName) {
-      var url = userBlocked === 0 ? "/api/admin/unblock/user/".concat(userId) : "/api/admin/block/user/".concat(userId);
+      var url = userBlocked === 0 ? "https://gipay.xyz/api/admin/unblock/user/".concat(userId) : "https://gipay.xyz/api/admin/block/user/".concat(userId);
       console.log(url);
       axios.patch(url, {}, {
         headers: {

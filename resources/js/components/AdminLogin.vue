@@ -28,7 +28,7 @@
         },
         methods: {
             login: function (event) {
-                axios.post('/api/login', {
+                axios.post('https://gipay.xyz/api/login', {
                     email: this.email,
                     password: this.password
                 })

@@ -41,7 +41,7 @@ export default {
         }
     },
     mounted() {
-        axios.get('/api/admin/orders', {
+        axios.get('https://gipay.xyz/api/admin/orders', {
             headers: {
                     'Authorization': `Bearer ${this.token}`,
                     'Content-Type': 'application/json',
