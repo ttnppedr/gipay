@@ -1,4 +1,9 @@
 {
     "extends": "airbnb",
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "rules": {
+        "comma-dangle": "off",
+        "indent": ["warn", 4],
+        "no-nested-ternary": "warn"
+    }
 }
