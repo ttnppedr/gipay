@@ -15,3 +15,15 @@ mix.js('resources/js/app.js', 'public/js').sass(
   'resources/sass/app.scss',
   'public/css'
 );
+
+/*
+|--------------------------------------------------------------------------
+| Mix HMR
+|--------------------------------------------------------------------------
+|
+| Set Hot Module Replacement
+|
+ */
+mix.browserSync({
+  proxy: 'my-domain.test'
+});
