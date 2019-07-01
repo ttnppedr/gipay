@@ -1907,7 +1907,7 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password
       }).then(function (response) {
         window.$cookies.set("token", response.data.token);
-        window.location.href = "/admin-index";
+        window.location.href = "/home";
       })["catch"](function (error) {
         console.log(error);
       });
@@ -38180,11 +38180,9 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "navbar-brand" }, [
-        _c(
-          "a",
-          { staticClass: "navbar-item", attrs: { href: "/admin-index" } },
-          [_c("img", { attrs: { src: _vm.logo } })]
-        ),
+        _c("a", { staticClass: "navbar-item", attrs: { href: "/home" } }, [
+          _c("img", { attrs: { src: _vm.logo } })
+        ]),
         _vm._v(" "),
         _vm._m(0)
       ]),

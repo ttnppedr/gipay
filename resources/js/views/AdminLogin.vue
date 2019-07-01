@@ -34,7 +34,7 @@ export default {
         })
         .then(function (response) {
           window.$cookies.set("token", response.data.token);
-          window.location.href = "/admin-index";
+          window.location.href = "/home";
         })
         .catch(function (error) {
           console.log(error);
