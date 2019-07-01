@@ -14,7 +14,7 @@
       </span>
     </div>
   </div>-->
-  <nav class="navbar" role="navigation" aria-label="main navigation" v-if="token">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/admin-index">
         <img :src="logo" />
@@ -33,7 +33,7 @@
       </a>
     </div>
 
-    <div class="navbar-menu">
+    <div class="navbar-menu" v-if="token">
       <div class="navbar-start">
         <a href="/admin-users" class="navbar-item">查看會員</a>
         <a href="/admin-orders" class="navbar-item">帳務紀錄</a>
@@ -42,7 +42,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-light">Log in</a>
+            <a class="button is-light">{{ loginStatusMsg }}</a>
           </div>
         </div>
       </div>
@@ -58,6 +58,11 @@ export default {
       token: window.$cookies.get("token"),
       logo: logo
     };
+  },
+  computed: {
+    loginStatusMsg () {
+      return this.token ? "登出" : "登入";
+    }
   },
   created () {
     if (this.token === null) {

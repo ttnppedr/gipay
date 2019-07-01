@@ -1825,6 +1825,11 @@ __webpack_require__.r(__webpack_exports__);
       logo: _images_logo_svg__WEBPACK_IMPORTED_MODULE_0___default.a
     };
   },
+  computed: {
+    loginStatusMsg: function loginStatusMsg() {
+      return this.token ? "登出" : "登入";
+    }
+  },
   created: function created() {
     if (this.token === null) {
       window.location.replace("/admin-login");
@@ -38172,28 +38177,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.token
-    ? _c(
-        "nav",
-        {
-          staticClass: "navbar",
-          attrs: { role: "navigation", "aria-label": "main navigation" }
-        },
-        [
-          _c("div", { staticClass: "navbar-brand" }, [
-            _c(
-              "a",
-              { staticClass: "navbar-item", attrs: { href: "/admin-index" } },
-              [_c("img", { attrs: { src: _vm.logo } })]
-            ),
+  return _c(
+    "nav",
+    {
+      staticClass: "navbar",
+      attrs: { role: "navigation", "aria-label": "main navigation" }
+    },
+    [
+      _c("div", { staticClass: "navbar-brand" }, [
+        _c(
+          "a",
+          { staticClass: "navbar-item", attrs: { href: "/admin-index" } },
+          [_c("img", { attrs: { src: _vm.logo } })]
+        ),
+        _vm._v(" "),
+        _vm._m(0)
+      ]),
+      _vm._v(" "),
+      _vm.token
+        ? _c("div", { staticClass: "navbar-menu" }, [
+            _vm._m(1),
             _vm._v(" "),
-            _vm._m(0)
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
-        ]
-      )
-    : _vm._e()
+            _c("div", { staticClass: "navbar-end" }, [
+              _c("div", { staticClass: "navbar-item" }, [
+                _c("div", { staticClass: "buttons" }, [
+                  _c("a", { staticClass: "button is-light" }, [
+                    _vm._v(_vm._s(_vm.loginStatusMsg))
+                  ])
+                ])
+              ])
+            ])
+          ])
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -38224,28 +38241,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-menu" }, [
-      _c("div", { staticClass: "navbar-start" }, [
-        _c(
-          "a",
-          { staticClass: "navbar-item", attrs: { href: "/admin-users" } },
-          [_vm._v("查看會員")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "navbar-item", attrs: { href: "/admin-orders" } },
-          [_vm._v("帳務紀錄")]
-        )
+    return _c("div", { staticClass: "navbar-start" }, [
+      _c("a", { staticClass: "navbar-item", attrs: { href: "/admin-users" } }, [
+        _vm._v("查看會員")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "navbar-end" }, [
-        _c("div", { staticClass: "navbar-item" }, [
-          _c("div", { staticClass: "buttons" }, [
-            _c("a", { staticClass: "button is-light" }, [_vm._v("Log in")])
-          ])
-        ])
-      ])
+      _c(
+        "a",
+        { staticClass: "navbar-item", attrs: { href: "/admin-orders" } },
+        [_vm._v("帳務紀錄")]
+      )
     ])
   }
 ]
