@@ -1778,15 +1778,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      token: window.$cookies.get('token')
+      token: window.$cookies.get("token")
     };
   },
   created: function created() {
     if (this.token === null) {
-      window.location.replace('/admin-login');
+      window.location.replace("/admin-login");
     }
   }
 });
@@ -1821,22 +1824,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     };
   },
   methods: {
     login: function login(event) {
-      axios.post('https://gipay.xyz/api/login', {
+      axios.post("https://gipay.xyz/api/login", {
         email: this.email,
         password: this.password
       }).then(function (response) {
-        window.$cookies.set('token', response.data.token);
-        window.location.href = '/admin-index';
+        window.$cookies.set("token", response.data.token);
+        window.location.href = "/admin-index";
       })["catch"](function (error) {
         console.log(error);
       });
@@ -1884,26 +1886,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      token: window.$cookies.get('token'),
+      token: window.$cookies.get("token"),
       orders: []
     };
   },
   created: function created() {
     if (this.token === null) {
-      window.location.replace('/admin-login');
+      window.location.replace("/admin-login");
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('https://gipay.xyz/api/admin/orders', {
+    axios.get("https://gipay.xyz/api/admin/orders", {
       headers: {
-        'Authorization': "Bearer ".concat(this.token),
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        Authorization: "Bearer ".concat(this.token),
+        "Content-Type": "application/json",
+        Accept: "application/json"
       }
     }).then(function (response) {
       _this.orders = response.data.data;
@@ -1917,16 +1920,16 @@ __webpack_require__.r(__webpack_exports__);
       console.log(url);
       axios.patch(url, {}, {
         headers: {
-          'Authorization': "Bearer ".concat(this.token),
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          Authorization: "Bearer ".concat(this.token),
+          "Content-Type": "application/json",
+          Accept: "application/json"
         }
       }).then(function (response) {
         var msg = userName;
-        msg += userBlocked === 0 ? ' 已解除凍結' : ' 已凍結';
+        msg += userBlocked === 0 ? " 已解除凍結" : " 已凍結";
         alert(msg);
       })["catch"](function (error) {
-        alert('操作失敗');
+        alert("操作失敗");
       });
     }
   }
@@ -1974,26 +1977,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      token: window.$cookies.get('token'),
+      token: window.$cookies.get("token"),
       users: []
     };
   },
   created: function created() {
     if (this.token === null) {
-      window.location.replace('/admin-login');
+      window.location.replace("/admin-login");
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('https://gipay.xyz/api/admin/users', {
+    axios.get("https://gipay.xyz/api/admin/users", {
       headers: {
-        'Authorization': "Bearer ".concat(this.token),
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        Authorization: "Bearer ".concat(this.token),
+        "Content-Type": "application/json",
+        Accept: "application/json"
       }
     }).then(function (response) {
       _this.users = response.data.data;
@@ -2007,16 +2016,16 @@ __webpack_require__.r(__webpack_exports__);
       console.log(url);
       axios.patch(url, {}, {
         headers: {
-          'Authorization': "Bearer ".concat(this.token),
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          Authorization: "Bearer ".concat(this.token),
+          "Content-Type": "application/json",
+          Accept: "application/json"
         }
       }).then(function (response) {
         var msg = userName;
-        msg += userBlocked === 0 ? ' 已解除凍結' : ' 已凍結';
+        msg += userBlocked === 0 ? " 已解除凍結" : " 已凍結";
         alert(msg);
       })["catch"](function (error) {
-        alert('操作失敗');
+        alert("操作失敗");
       });
     }
   }
@@ -2047,11 +2056,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   }
 });
 
@@ -37612,28 +37619,24 @@ var render = function() {
             [
               _c("li", [
                 _vm._v(
-                  "\n                ID,\n                類型,\n                金額,\n                到,\n                從\n            "
+                  "\n        ID,\n        類型,\n        金額,\n        到,\n        從\n      "
                 )
               ]),
               _vm._v(" "),
               _vm._l(_vm.orders, function(order) {
                 return _c("li", [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(order.id) +
-                      ",\n                "
-                  ),
+                  _vm._v("\n        " + _vm._s(order.id) + ",\n        "),
                   order.type === 1 ? _c("span", [_vm._v("存款,")]) : _vm._e(),
                   _vm._v(" "),
                   order.type === 2 ? _c("span", [_vm._v("取款,")]) : _vm._e(),
                   _vm._v(" "),
                   order.type === 3 ? _c("span", [_vm._v("轉帳,")]) : _vm._e(),
                   _vm._v(
-                    "\n                $" +
+                    "\n        $" +
                       _vm._s(order.amount) +
-                      ",\n                " +
+                      ",\n        " +
                       _vm._s(order.to.name) +
-                      ",\n                "
+                      ",\n        "
                   ),
                   order.type === 3
                     ? _c("span", [_vm._v(_vm._s(order.from.name))])
@@ -37677,20 +37680,20 @@ var render = function() {
             [
               _c("li", [
                 _vm._v(
-                  "\n                ID,\n                帳號,\n                餘額,\n                凍結,\n                錯誤次數,\n                e-mail,\n                管理者\n            "
+                  "\n        ID,\n        帳號,\n        餘額,\n        凍結,\n        錯誤次數,\n        e-mail,\n        管理者\n      "
                 )
               ]),
               _vm._v(" "),
               _vm._l(_vm.users, function(user) {
                 return _c("li", [
                   _vm._v(
-                    "\n                " +
+                    "\n        " +
                       _vm._s(user.id) +
-                      ",\n                " +
+                      ",\n        " +
                       _vm._s(user.name) +
-                      ",\n                $" +
+                      ",\n        $" +
                       _vm._s(user.balance) +
-                      ",\n                "
+                      ",\n        "
                   ),
                   _c("input", {
                     directives: [
@@ -37742,13 +37745,13 @@ var render = function() {
                     }
                   }),
                   _vm._v(
-                    ",\n                " +
+                    "\n        ,\n        " +
                       _vm._s(user.password_errors) +
-                      ",\n                " +
+                      ",\n        " +
                       _vm._s(user.email) +
-                      ",\n                " +
+                      ",\n        " +
                       _vm._s(user.admin) +
-                      ",\n            "
+                      ",\n      "
                   )
                 ])
               })
@@ -37797,9 +37800,7 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
+              _vm._v("I'm an example component.")
             ])
           ])
         ])
@@ -50418,8 +50419,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ttnppedr/code/gipay/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ttnppedr/code/gipay/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/askie/project/side-project/gipay/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/askie/project/side-project/gipay/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
