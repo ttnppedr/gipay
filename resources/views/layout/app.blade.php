@@ -5,7 +5,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>GIPAY | 我們的好想幣</title>
 
         <!-- favicon -->
         <link rel="apple-touch-icon" sizes="57x57" href="./apple-icon-57x57.png">
