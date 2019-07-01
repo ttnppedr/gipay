@@ -33,6 +33,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bulma": "^0.7.5",
         "vue-cookies": "^1.5.13"
     }
 }
