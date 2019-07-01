@@ -24,7 +24,7 @@ window.Vue = require('vue');
 
 // Vue.component('example-component', require('./views/ExampleComponent.vue').default);
 Vue.component('admin-login', require('./views/AdminLogin.vue').default);
-Vue.component('admin-index', require('./views/AdminIndex.vue').default);
+Vue.component('home', require('./views/AdminIndex.vue').default);
 Vue.component('admin-users', require('./views/AdminUsers.vue').default);
 Vue.component('admin-orders', require('./views/AdminOrders.vue').default);
 Vue.component('navigation', require('./components/Navigation.vue').default);

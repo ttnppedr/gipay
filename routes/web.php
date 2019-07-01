@@ -29,7 +29,7 @@ Route::get('/admin-login', function () {
     return view('admin-login');
 });
 
-Route::get('/admin-index', function () {
+Route::get('/home', function () {
     return view('admin-index');
 });
 

@@ -1,5 +1,5 @@
 @extends('layout.app')
 
 @section('content')
-    <admin-index></admin-index>
+    <home></home>
 @endsection

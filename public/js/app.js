@@ -50717,7 +50717,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // Vue.component('example-component', require('./views/ExampleComponent.vue').default);
 
 Vue.component('admin-login', __webpack_require__(/*! ./views/AdminLogin.vue */ "./resources/js/views/AdminLogin.vue")["default"]);
-Vue.component('admin-index', __webpack_require__(/*! ./views/AdminIndex.vue */ "./resources/js/views/AdminIndex.vue")["default"]);
+Vue.component('home', __webpack_require__(/*! ./views/AdminIndex.vue */ "./resources/js/views/AdminIndex.vue")["default"]);
 Vue.component('admin-users', __webpack_require__(/*! ./views/AdminUsers.vue */ "./resources/js/views/AdminUsers.vue")["default"]);
 Vue.component('admin-orders', __webpack_require__(/*! ./views/AdminOrders.vue */ "./resources/js/views/AdminOrders.vue")["default"]);
 Vue.component('navigation', __webpack_require__(/*! ./components/Navigation.vue */ "./resources/js/components/Navigation.vue")["default"]);
