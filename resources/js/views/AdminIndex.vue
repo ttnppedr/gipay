@@ -2,18 +2,7 @@
 </style>
 
 <template>
-  <div v-if="token">
-    <div>
-      <span>
-        <a href="/admin-users">Users</a>
-      </span>
-    </div>
-    <div>
-      <span>
-        <a href="/admin-orders">Orders</a>
-      </span>
-    </div>
-  </div>
+  <div v-if="token"></div>
 </template>
 
 <script>

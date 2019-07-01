@@ -32,6 +32,7 @@
     </head>
     <body>
             <div id="app">
+                <navigation></navigation>
                 @yield('content')
             </div>
             <script src="{{asset('js/app.js')}}" ></script>
