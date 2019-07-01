@@ -21,7 +21,7 @@ class AdminController extends Controller
         if ($user = User::where('email', request('email'))->where('admin', true)->first()) {
             if ($user->password == request('password')) {
                 $token = Token::updateOrCreate(['user_id' => $user->id], ['token' => Str::random(60)]);
-                return ['token' => $token->token];
+                return ['token' => $token->token, 'user' => $user];
             }
         }
 
