@@ -63,11 +63,6 @@ export default {
     loginStatusMsg () {
       return this.token ? "登出" : "登入";
     }
-  },
-  created () {
-    if (this.token === null) {
-      window.location.replace("/admin-login");
-    }
   }
 };
 </script>

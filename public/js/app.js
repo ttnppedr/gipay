@@ -1829,11 +1829,6 @@ __webpack_require__.r(__webpack_exports__);
     loginStatusMsg: function loginStatusMsg() {
       return this.token ? "登出" : "登入";
     }
-  },
-  created: function created() {
-    if (this.token === null) {
-      window.location.replace("/admin-login");
-    }
   }
 });
 
