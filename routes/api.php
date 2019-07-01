@@ -23,6 +23,7 @@ Route::post('/balance', 'CommandsController@balance');
 Route::post('/callback', 'CommandsController@callback');
 
 Route::post('/login', 'AdminController@login');
+Route::get('/info', 'AdminController@info');
 Route::post('/deposit/{toUser}', 'AdminController@deposit');
 Route::post('/withdraw/{toUser}', 'AdminController@withdraw');
 
