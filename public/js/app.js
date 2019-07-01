@@ -1763,6 +1763,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _images_logo_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../images/logo.svg */ "./resources/images/logo.svg");
+/* harmony import */ var _images_logo_svg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_images_logo_svg__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1815,10 +1817,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      token: window.$cookies.get("token")
+      token: window.$cookies.get("token"),
+      logo: _images_logo_svg__WEBPACK_IMPORTED_MODULE_0___default.a
     };
   },
   created: function created() {
@@ -38175,7 +38179,19 @@ var render = function() {
           staticClass: "navbar",
           attrs: { role: "navigation", "aria-label": "main navigation" }
         },
-        [_vm._m(0), _vm._v(" "), _vm._m(1)]
+        [
+          _c("div", { staticClass: "navbar-brand" }, [
+            _c(
+              "a",
+              { staticClass: "navbar-item", attrs: { href: "/admin-index" } },
+              [_c("img", { attrs: { src: _vm.logo } })]
+            ),
+            _vm._v(" "),
+            _vm._m(0)
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ]
       )
     : _vm._e()
 }
@@ -38184,37 +38200,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-brand" }, [
-      _c("a", { staticClass: "navbar-item", attrs: { href: "/admin-index" } }, [
-        _c("img", {
-          attrs: {
-            src: "https://bulma.io/images/bulma-logo.png",
-            width: "112",
-            height: "28"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "navbar-burger burger",
-          attrs: {
-            role: "button",
-            "aria-label": "menu",
-            "aria-expanded": "false",
-            "data-target": "navbarBasicExample"
-          }
-        },
-        [
-          _c("span", { attrs: { "aria-hidden": "true" } }),
-          _vm._v(" "),
-          _c("span", { attrs: { "aria-hidden": "true" } }),
-          _vm._v(" "),
-          _c("span", { attrs: { "aria-hidden": "true" } })
-        ]
-      )
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "navbar-burger burger",
+        attrs: {
+          role: "button",
+          "aria-label": "menu",
+          "aria-expanded": "false",
+          "data-target": "navbarBasicExample"
+        }
+      },
+      [
+        _c("span", { attrs: { "aria-hidden": "true" } }),
+        _vm._v(" "),
+        _c("span", { attrs: { "aria-hidden": "true" } }),
+        _vm._v(" "),
+        _c("span", { attrs: { "aria-hidden": "true" } })
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -50658,6 +50662,17 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "./resources/images/logo.svg":
+/*!***********************************!*\
+  !*** ./resources/images/logo.svg ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/logo.svg?de21d263bea776780a56b685b6c015ce";
 
 /***/ }),
 

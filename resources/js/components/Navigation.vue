@@ -17,7 +17,7 @@
   <nav class="navbar" role="navigation" aria-label="main navigation" v-if="token">
     <div class="navbar-brand">
       <a class="navbar-item" href="/admin-index">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+        <img :src="logo" />
       </a>
 
       <a
@@ -51,10 +51,12 @@
 </template>
 
 <script>
+import logo from "../../images/logo.svg"
 export default {
   data: function () {
     return {
-      token: window.$cookies.get("token")
+      token: window.$cookies.get("token"),
+      logo: logo
     };
   },
   created () {
