@@ -19,24 +19,24 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       email: "",
       password: ""
     };
   },
   methods: {
-    login: function(event) {
+    login: function (event) {
       axios
         .post("https://gipay.xyz/api/login", {
           email: this.email,
           password: this.password
         })
-        .then(function(response) {
+        .then(function (response) {
           window.$cookies.set("token", response.data.token);
           window.location.href = "/admin-index";
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     }

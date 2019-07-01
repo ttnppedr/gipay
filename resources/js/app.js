@@ -1,9 +1,10 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+import VueCookies from 'vue-cookies';
 
 require('./bootstrap');
 
@@ -26,7 +27,6 @@ Vue.component('admin-index', require('./components/AdminIndex.vue').default);
 Vue.component('admin-users', require('./components/AdminUsers.vue').default);
 Vue.component('admin-orders', require('./components/AdminOrders.vue').default);
 
-import VueCookies from 'vue-cookies';
 Vue.use(VueCookies);
 
 /**
@@ -36,5 +36,5 @@ Vue.use(VueCookies);
  */
 
 const app = new Vue({
-    el: '#app'
+  el: '#app'
 });

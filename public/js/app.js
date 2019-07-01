@@ -49966,6 +49966,8 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -49984,7 +49986,6 @@ Vue.component('admin-login', __webpack_require__(/*! ./components/AdminLogin.vue
 Vue.component('admin-index', __webpack_require__(/*! ./components/AdminIndex.vue */ "./resources/js/components/AdminIndex.vue")["default"]);
 Vue.component('admin-users', __webpack_require__(/*! ./components/AdminUsers.vue */ "./resources/js/components/AdminUsers.vue")["default"]);
 Vue.component('admin-orders', __webpack_require__(/*! ./components/AdminOrders.vue */ "./resources/js/components/AdminOrders.vue")["default"]);
-
 Vue.use(vue_cookies__WEBPACK_IMPORTED_MODULE_0___default.a);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
