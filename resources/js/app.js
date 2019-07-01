@@ -22,11 +22,11 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('admin-login', require('./components/AdminLogin.vue').default);
-Vue.component('admin-index', require('./components/AdminIndex.vue').default);
-Vue.component('admin-users', require('./components/AdminUsers.vue').default);
-Vue.component('admin-orders', require('./components/AdminOrders.vue').default);
+// Vue.component('example-component', require('./views/ExampleComponent.vue').default);
+Vue.component('admin-login', require('./views/AdminLogin.vue').default);
+Vue.component('admin-index', require('./views/AdminIndex.vue').default);
+Vue.component('admin-users', require('./views/AdminUsers.vue').default);
+Vue.component('admin-orders', require('./views/AdminOrders.vue').default);
 
 Vue.use(VueCookies);
 
