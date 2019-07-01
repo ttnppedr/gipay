@@ -5,6 +5,7 @@
  */
 
 import VueCookies from 'vue-cookies';
+import 'bulma/css/bulma.css';
 
 require('./bootstrap');
 
