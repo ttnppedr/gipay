@@ -41,7 +41,7 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
+          <div class="buttons" @click="logout">
             <a class="button is-light">{{ loginStatusMsg }}</a>
           </div>
         </div>
@@ -62,6 +62,13 @@ export default {
   computed: {
     loginStatusMsg () {
       return this.token ? "登出" : "登入";
+    }
+  },
+  methods: {
+    logout () {
+      if (!this.token) return;
+      window.$cookies.remove("token");
+      window.location.replace("/admin-login");
     }
   }
 };

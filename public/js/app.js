@@ -1829,6 +1829,13 @@ __webpack_require__.r(__webpack_exports__);
     loginStatusMsg: function loginStatusMsg() {
       return this.token ? "登出" : "登入";
     }
+  },
+  methods: {
+    logout: function logout() {
+      if (!this.token) return;
+      window.$cookies.remove("token");
+      window.location.replace("/admin-login");
+    }
   }
 });
 
@@ -38193,11 +38200,15 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "navbar-end" }, [
               _c("div", { staticClass: "navbar-item" }, [
-                _c("div", { staticClass: "buttons" }, [
-                  _c("a", { staticClass: "button is-light" }, [
-                    _vm._v(_vm._s(_vm.loginStatusMsg))
-                  ])
-                ])
+                _c(
+                  "div",
+                  { staticClass: "buttons", on: { click: _vm.logout } },
+                  [
+                    _c("a", { staticClass: "button is-light" }, [
+                      _vm._v(_vm._s(_vm.loginStatusMsg))
+                    ])
+                  ]
+                )
               ])
             ])
           ])
