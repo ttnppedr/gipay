@@ -28,6 +28,16 @@ class AdminController extends Controller
         return ['message' => 'email or password error'];
     }
 
+    public function info()
+    {
+        $token = request()->bearerToken();
+        if (!$token || !Token::where('token', $token)->exists()) {
+            return ['message' => 'token error'];
+        }
+
+        return Token::where('token', $token)->first()->user;
+    }
+
     public function deposit(User $toUser)
     {
         $token = request()->bearerToken();
