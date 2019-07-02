@@ -1,9 +1,11 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+import VueCookies from 'vue-cookies';
+import 'bulma/css/bulma.css';
 
 require('./bootstrap');
 
@@ -20,13 +22,13 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('admin-login', require('./components/AdminLogin.vue').default);
-Vue.component('admin-index', require('./components/AdminIndex.vue').default);
-Vue.component('admin-users', require('./components/AdminUsers.vue').default);
-Vue.component('admin-orders', require('./components/AdminOrders.vue').default);
+// Vue.component('example-component', require('./views/ExampleComponent.vue').default);
+Vue.component('admin-login', require('./views/AdminLogin.vue').default);
+Vue.component('home', require('./views/AdminIndex.vue').default);
+Vue.component('admin-users', require('./views/AdminUsers.vue').default);
+Vue.component('admin-orders', require('./views/AdminOrders.vue').default);
+Vue.component('navigation', require('./components/Navigation.vue').default);
 
-import VueCookies from 'vue-cookies';
 Vue.use(VueCookies);
 
 /**
@@ -36,5 +38,5 @@ Vue.use(VueCookies);
  */
 
 const app = new Vue({
-    el: '#app'
+  el: '#app'
 });
