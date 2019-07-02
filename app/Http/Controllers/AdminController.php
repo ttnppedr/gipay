@@ -23,6 +23,7 @@ class AdminController extends Controller
                 $token = Token::updateOrCreate(['user_id' => $user->id], ['token' => Str::random(60)]);
                 return ['token' => $token->token, 'user' => $user];
             }
+            return ['message' => 'not admin'];
         }
 
         return ['message' => 'email or password error'];
