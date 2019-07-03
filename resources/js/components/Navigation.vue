@@ -2,18 +2,6 @@
 </style>
 
 <template>
-  <!-- <div v-if="token">
-    <div>
-      <span>
-        <a href="/admin-users">Users</a>
-      </span>
-    </div>
-    <div>
-      <span>
-        <a href="/admin-orders">Orders</a>
-      </span>
-    </div>
-  </div>-->
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/home">
