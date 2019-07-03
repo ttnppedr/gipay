@@ -10,6 +10,9 @@
             <h2 class="subtitle">
               Enjoy Life!
             </h2>
+            <p class="help is-danger" v-show="error.isError">
+              {{ error.errMessage }}
+            </p>
           </div>
         </div>
       </section>
@@ -19,6 +22,7 @@
           <input
             id="adminUsername"
             class="input"
+            v-bind:class="errorClass"
             type="text"
             v-model="email"
             placeholder="abc@gmail.com"
@@ -32,6 +36,7 @@
           <input
             id="adminPassWord"
             class="input"
+            v-bind:class="errorClass"
             type="password"
             v-model="password"
           />
@@ -55,9 +60,20 @@
   export default {
     data: function() {
       return {
+        error: {
+          isError: 0,
+          errMessage: ''
+        },
         email: '',
         password: ''
       };
+    },
+    computed: {
+      errorClass: function() {
+        return {
+          'is-danger': this.error.isError === 1
+        };
+      }
     },
     methods: {
       login: function(event) {
@@ -66,11 +82,23 @@
             email: this.email,
             password: this.password
           })
-          .then(function(response) {
+          .then(response => {
+            console.log(response.data);
+            if (response.data.message) {
+              this.error.isError = 1;
+              this.error.errMessage = response.data.message.toUpperCase();
+
+              return;
+            }
+            if (!response.data.user.admin) {
+              this.error.isError = 1;
+              this.error.errMessage = '您並非是後台管理者，請聯絡工程師。';
+              return;
+            }
             window.$cookies.set('token', response.data.token);
             window.location.href = '/home';
           })
-          .catch(function(error) {
+          .catch(error => {
             console.log(error);
           });
       }
