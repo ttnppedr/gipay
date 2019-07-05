@@ -54,4 +54,16 @@ class UserController extends Controller
 
         return $user->fresh();
     }
+
+    public function indexOrder(User $user)
+    {
+        $token = request()->bearerToken();
+        if (!$token || !Token::where('token', $token)->exists()) {
+            return ['message' => 'token error'];
+        }
+
+        $row = request('row') ?? 10;
+
+        return $user->orders()->with('to', 'from')->orderByDesc('created_at', 'desc')->paginate($row)->appends(['row' => $row]);
+    }
 }
