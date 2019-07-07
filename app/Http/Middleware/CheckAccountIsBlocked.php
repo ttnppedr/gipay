@@ -22,6 +22,10 @@ class CheckAccountIsBlocked
         preg_match("/^<@(\w+)\|(\w+)>$/", $text[0], $text);
         $payee = $text[1]; // 收款人
 
+        if ($message = $this->checkUsers(compact('payer', 'payee'))) {
+            return response()->json(["text" => $message]);
+        };
+
         $users = User::whereIn('slack_id', [$payer, $payee])->get();
 
         if ($users[0]['blocked']) {
@@ -33,5 +37,15 @@ class CheckAccountIsBlocked
         }
 
         return $next($request);
+    }
+
+    private function checkUsers($users)
+    {
+        $message = [];
+
+        User::where('slack_id', $users['payer'])->exists() ?: $message[] = '匯款人不存在';
+        User::where('slack_id', $users['payee'])->exists() ?: $message[] = '收款人不存在';
+
+        return implode(', ', $message);
     }
 }
