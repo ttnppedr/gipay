@@ -93,15 +93,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.gipay-container {
-  max-width: 768px;
-  margin: 0 auto;
-  min-height: calc(100vh - 52px);
-}
-
-table {
-  border-radius: 5px;
-}
-</style>

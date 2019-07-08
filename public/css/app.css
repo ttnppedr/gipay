@@ -4,3 +4,13 @@
   line-height: 1.6;
 }
 
+.gipay-container {
+  background: rgba(255, 255, 255, 0.5);
+  min-height: calc(100vh - 52px);
+  padding-top: 45px;
+}
+
+.gipay-container table {
+  border-radius: 5px;
+}
+
