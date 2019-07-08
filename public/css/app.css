@@ -10,7 +10,15 @@
   padding-top: 45px;
 }
 
-.gipay-container table {
+.gipay-container .table {
   border-radius: 5px;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.gipay-container .table [type=checkbox] {
+  width: 0;
+  height: 0;
+  display: none;
 }
 

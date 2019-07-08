@@ -12,7 +12,15 @@ body {
   min-height: calc(100vh - 52px);
   padding-top: 45px;
 
-  table {
+  .table {
     border-radius: 5px;
+    max-width: 768px;
+    margin: 0 auto;
+
+    [type="checkbox"] {
+      width: 0;
+      height: 0;
+      display: none;
+    }
   }
 }

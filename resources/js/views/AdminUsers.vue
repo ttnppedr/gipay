@@ -3,30 +3,36 @@
     <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr data-id>
+          <th align="center" class="table-align-center">權限</th>
           <th>帳號</th>
-          <th>餘額</th>
-          <th>E-mail</th>
-          <th>凍結</th>
-          <th>錯誤次數</th>
-          <th>Admin</th>
+          <th align="right">餘額</th>
+          <th align="center" class="table-align-center">錯誤次數</th>
+          <th align="center" class="table-align-center">動作</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="user in users" :key="user.id">
+          <td align="center">
+            <span class="tag is-info" v-if="user.admin">Admin</span>
+          </td>
           <td>{{ user.name }}</td>
-          <td>$ {{ user.balance }}</td>
-          <td>{{ user.email }}</td>
-          <td>
+          <th align="right">$ {{ user.balance }}</th>
+          <td align="center">{{ user.password_errors }}</td>
+          <td align="center">
             <input
               type="checkbox"
               v-model="user.blocked"
-              v-bind:true-value="1"
-              v-bind:false-value="0"
+              :id="user.id"
+              :true-value="1"
+              :false-value="0"
               @change="setBlock(user.id, user.blocked, user.name)"
             />
+            <label
+              class="button is-small is-danger is-rounded"
+              :class="{ 'is-outlined': !user.blocked }"
+              :for="user.id"
+            >{{ user.blocked === 0 ? "凍結" : "解除" }}</label>
           </td>
-          <td>{{ user.password_errors }}</td>
-          <td>{{ user.admin }}</td>
         </tr>
       </tbody>
     </table>
@@ -68,7 +74,6 @@ export default {
         userBlocked === 0
           ? `https://gipay.xyz/api/admin/unblock/user/${userId}`
           : `https://gipay.xyz/api/admin/block/user/${userId}`;
-      console.log(url);
       axios
         .patch(
           url,
@@ -81,11 +86,6 @@ export default {
             }
           }
         )
-        .then(response => {
-          let msg = userName;
-          msg += userBlocked === 0 ? " 已解除凍結" : " 已凍結";
-          alert(msg);
-        })
         .catch(function(error) {
           alert("操作失敗");
         });

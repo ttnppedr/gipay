@@ -2202,6 +2202,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2232,17 +2238,12 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     setBlock: function setBlock(userId, userBlocked, userName) {
       var url = userBlocked === 0 ? "https://gipay.xyz/api/admin/unblock/user/".concat(userId) : "https://gipay.xyz/api/admin/block/user/".concat(userId);
-      console.log(url);
       axios.patch(url, {}, {
         headers: {
           Authorization: "Bearer ".concat(this.token),
           "Content-Type": "application/json",
           Accept: "application/json"
         }
-      }).then(function (response) {
-        var msg = userName;
-        msg += userBlocked === 0 ? " 已解除凍結" : " 已凍結";
-        alert(msg);
       })["catch"](function (error) {
         alert("操作失敗");
       });
@@ -39594,13 +39595,25 @@ var render = function() {
               "tbody",
               _vm._l(_vm.users, function(user) {
                 return _c("tr", { key: user.id }, [
+                  _c("td", { attrs: { align: "center" } }, [
+                    user.admin
+                      ? _c("span", { staticClass: "tag is-info" }, [
+                          _vm._v("Admin")
+                        ])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(user.name))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v("$ " + _vm._s(user.balance))]),
+                  _c("th", { attrs: { align: "right" } }, [
+                    _vm._v("$ " + _vm._s(user.balance))
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.email))]),
+                  _c("td", { attrs: { align: "center" } }, [
+                    _vm._v(_vm._s(user.password_errors))
+                  ]),
                   _vm._v(" "),
-                  _c("td", [
+                  _c("td", { attrs: { align: "center" } }, [
                     _c("input", {
                       directives: [
                         {
@@ -39612,6 +39625,7 @@ var render = function() {
                       ],
                       attrs: {
                         type: "checkbox",
+                        id: user.id,
                         "true-value": 1,
                         "false-value": 0
                       },
@@ -39653,12 +39667,18 @@ var render = function() {
                           }
                         ]
                       }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.password_errors))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.admin))])
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "button is-small is-danger is-rounded",
+                        class: { "is-outlined": !user.blocked },
+                        attrs: { for: user.id }
+                      },
+                      [_vm._v(_vm._s(user.blocked === 0 ? "凍結" : "解除"))]
+                    )
+                  ])
                 ])
               }),
               0
@@ -39675,17 +39695,27 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { attrs: { "data-id": "" } }, [
+        _c(
+          "th",
+          { staticClass: "table-align-center", attrs: { align: "center" } },
+          [_vm._v("權限")]
+        ),
+        _vm._v(" "),
         _c("th", [_vm._v("帳號")]),
         _vm._v(" "),
-        _c("th", [_vm._v("餘額")]),
+        _c("th", { attrs: { align: "right" } }, [_vm._v("餘額")]),
         _vm._v(" "),
-        _c("th", [_vm._v("E-mail")]),
+        _c(
+          "th",
+          { staticClass: "table-align-center", attrs: { align: "center" } },
+          [_vm._v("錯誤次數")]
+        ),
         _vm._v(" "),
-        _c("th", [_vm._v("凍結")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("錯誤次數")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Admin")])
+        _c(
+          "th",
+          { staticClass: "table-align-center", attrs: { align: "center" } },
+          [_vm._v("動作")]
+        )
       ])
     ])
   }
