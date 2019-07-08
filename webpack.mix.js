@@ -25,5 +25,5 @@ mix.js('resources/js/app.js', 'public/js').sass(
 |
  */
 mix.browserSync({
-  proxy: 'my-domain.test'
+  proxy: 'gipay.test'
 });
