@@ -1,54 +1,52 @@
-<style>
-</style>
-
 <template>
-  <div v-if="token">
-    <div>
-      <ul>
-        <li>
-          ID,
-          帳號,
-          餘額,
-          凍結,
-          錯誤次數,
-          e-mail,
-          管理者
-        </li>
-        <li v-for="user in users">
-          {{ user.id }},
-          {{ user.name }},
-          ${{ user.balance }},
-          <input
-            type="checkbox"
-            v-model="user.blocked"
-            v-bind:true-value="1"
-            v-bind:false-value="0"
-            @change="setBlock(user.id, user.blocked, user.name)"
-          />
-          ,
-          {{ user.password_errors }},
-          {{ user.email }},
-          {{ user.admin }},
-        </li>
-      </ul>
-    </div>
-  </div>
+  <section v-if="token" class="gipay-container">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr data-id>
+          <th>帳號</th>
+          <th>餘額</th>
+          <th>E-mail</th>
+          <th>凍結</th>
+          <th>錯誤次數</th>
+          <th>Admin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users" :key="user.id">
+          <td>{{ user.name }}</td>
+          <td>$ {{ user.balance }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <input
+              type="checkbox"
+              v-model="user.blocked"
+              v-bind:true-value="1"
+              v-bind:false-value="0"
+              @change="setBlock(user.id, user.blocked, user.name)"
+            />
+          </td>
+          <td>{{ user.password_errors }}</td>
+          <td>{{ user.admin }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </template>
 
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
       token: window.$cookies.get("token"),
       users: []
     };
   },
-  created () {
+  created() {
     if (this.token === null) {
       window.location.replace("/admin-login");
     }
   },
-  mounted () {
+  mounted() {
     axios
       .get("https://gipay.xyz/api/admin/users", {
         headers: {
@@ -60,12 +58,12 @@ export default {
       .then(response => {
         this.users = response.data.data;
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   },
   methods: {
-    setBlock (userId, userBlocked, userName) {
+    setBlock(userId, userBlocked, userName) {
       let url =
         userBlocked === 0
           ? `https://gipay.xyz/api/admin/unblock/user/${userId}`
@@ -88,10 +86,22 @@ export default {
           msg += userBlocked === 0 ? " 已解除凍結" : " 已凍結";
           alert(msg);
         })
-        .catch(function (error) {
+        .catch(function(error) {
           alert("操作失敗");
         });
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.gipay-container {
+  max-width: 768px;
+  margin: 0 auto;
+  min-height: calc(100vh - 52px);
+}
+
+table {
+  border-radius: 5px;
+}
+</style>
