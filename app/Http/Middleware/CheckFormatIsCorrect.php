@@ -15,7 +15,7 @@ class CheckFormatIsCorrect
      */
     public function handle($request, Closure $next)
     {
-        $text = explode(',', $request['text']);
+        $text = app()->make('TextExploder')->getText();
 
         if (count($text) === 1) {
             return response()->json(["text" => "交易失敗，格式錯誤"]);

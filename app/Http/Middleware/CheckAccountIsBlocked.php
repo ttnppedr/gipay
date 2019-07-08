@@ -18,7 +18,7 @@ class CheckAccountIsBlocked
     {
         $payer = $request['user_id']; // 匯款人
 
-        $text = explode(',', $request['text']);
+        $text = app()->make('TextExploder')->getText();
         preg_match("/^<@(\w+)\|(\w+)>$/", $text[0], $text);
         $payee = $text[1]; // 收款人
 

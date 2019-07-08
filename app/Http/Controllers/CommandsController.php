@@ -8,16 +8,17 @@ use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Providers\TextExplodeServiceProvider;
 
 const TIMEOUT_SECOND = 300;
 
 class CommandsController extends Controller
 {
-    public function pay(Request $request)
+    public function pay(Request $request, TextExplodeServiceProvider $textExploder)
     {
         Log::debug(json_encode(urldecode($request->getContent()), JSON_UNESCAPED_SLASHES));
 
-        $text = explode(',', $request['text']);
+        $text = $textExploder->getText();
 
         $trigger = Trigger::create([
             'trigger_id' => $request['trigger_id'],
