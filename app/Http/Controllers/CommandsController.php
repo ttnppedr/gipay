@@ -17,24 +17,22 @@ class CommandsController extends Controller
     {
         Log::debug(json_encode(urldecode($request->getContent()), JSON_UNESCAPED_SLASHES));
 
-        $text = explode(',', $request['text']);
-
         $trigger = Trigger::create([
             'trigger_id' => $request['trigger_id'],
-            'user_id' => User::where('slack_id', substr($text[0], 2, 9))->first()->id,
-            'amount' => $text[1],
+            'user_id' => User::where('slack_id', $request['payee_id'])->first()->id,
+            'amount' => $request['amount'],
         ]);
 
-        return response()->json($this->getPayResponse($text, $trigger->id));
+        return response()->json($this->getPayResponse($request['who'], $request['amount'], $trigger->id));
     }
 
-    private function getPayResponse(array $text, $id): array
+    private function getPayResponse($who, $amount, $id): array
     {
         return [
             "text" => "付錢囉～",
             "attachments" => [
                 [
-                    "text" => "您確定要將 {$text[1]} 元給 {$text[0]} 嗎？",
+                    "text" => "您確定要將 $amount 元給 $who 嗎？",
                     "callback_id" => "confirm_transaction",
                     "color" => "#ff0000",
                     "actions" => [

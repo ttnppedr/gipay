@@ -15,17 +15,11 @@ class CheckFormatIsCorrect
      */
     public function handle($request, Closure $next)
     {
-        $text = explode(',', $request['text']);
-
-        if (count($text) === 1) {
-            return response()->json(["text" => "交易失敗，格式錯誤"]);
-        }
-
-        if (!$this->checkWhoIsCorrectFormat($text[0])) {
+        if (!$this->checkWhoIsCorrectFormat($request['who'])) {
             return response()->json(["text" => "交易失敗，Who 格式錯誤"]);
         }
 
-        if (!$this->checkAmountIsCorrect($text[1])) {
+        if (!$this->checkAmountIsCorrect($request['amount'])) {
             return response()->json(["text" => "交易失敗，Amount 格式錯誤"]);
         }
 

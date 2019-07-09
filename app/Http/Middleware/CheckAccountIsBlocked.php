@@ -16,17 +16,11 @@ class CheckAccountIsBlocked
      */
     public function handle($request, Closure $next)
     {
-        $payer = $request['user_id']; // 匯款人
-
-        $text = explode(',', $request['text']);
-        preg_match("/^<@(\w+)\|(\w+)>$/", $text[0], $text);
-        $payee = $text[1]; // 收款人
-
-        if ($message = $this->checkUsers(compact('payer', 'payee'))) {
+        if ($message = $this->checkUsers(['payer' => $request['user_id'], 'payee' => $request['payee_id']])) {
             return response()->json(["text" => $message]);
         };
 
-        $users = User::whereIn('slack_id', [$payer, $payee])->get();
+        $users = User::whereIn('slack_id', [$request['user_id'], $request['payee_id']])->get();
 
         if ($users[0]['blocked']) {
             return response()->json(["text" => "匯款人帳號被凍結"]);

@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'CheckFormatIsCorrect' => \App\Http\Middleware\CheckFormatIsCorrect::class,
         'CheckAccountIsBlocked' => \App\Http\Middleware\CheckAccountIsBlocked::class,
+        'PretreatmentRequest' => \App\Http\Middleware\PretreatmentRequestMiddleware::class,
     ];
 
     /**
