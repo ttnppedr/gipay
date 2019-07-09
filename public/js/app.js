@@ -2034,7 +2034,13 @@ __webpack_require__.r(__webpack_exports__);
       return {
         "is-danger": this.error.isError === 1
       };
+    },
+    token: function token() {
+      return window.$cookies.get("token");
     }
+  },
+  mounted: function mounted() {
+    if (this.token) window.location.href = "/home";
   },
   methods: {
     login: function login(event) {

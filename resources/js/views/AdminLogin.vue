@@ -65,7 +65,13 @@ export default {
       return {
         "is-danger": this.error.isError === 1
       };
+    },
+    token() {
+      return window.$cookies.get("token");
     }
+  },
+  mounted() {
+    if (this.token) window.location.href = "/home";
   },
   methods: {
     login: function(event) {
