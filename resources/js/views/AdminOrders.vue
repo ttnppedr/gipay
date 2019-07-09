@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <div v-if="token">
+  <section v-if="token" class="gipay-container">
     <div>
       <ul>
         <li>
@@ -25,23 +25,23 @@
         </li>
       </ul>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
       token: window.$cookies.get("token"),
       orders: []
     };
   },
-  created () {
+  created() {
     if (this.token === null) {
       window.location.replace("/admin-login");
     }
   },
-  mounted () {
+  mounted() {
     axios
       .get("https://gipay.xyz/api/admin/orders", {
         headers: {
@@ -53,12 +53,12 @@ export default {
       .then(response => {
         this.orders = response.data.data;
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   },
   methods: {
-    setBlock (userId, userBlocked, userName) {
+    setBlock(userId, userBlocked, userName) {
       let url =
         userBlocked === 0
           ? `/api/admin/unblock/user/${userId}`
@@ -81,7 +81,7 @@ export default {
           msg += userBlocked === 0 ? " 已解除凍結" : " 已凍結";
           alert(msg);
         })
-        .catch(function (error) {
+        .catch(function(error) {
           alert("操作失敗");
         });
     }
