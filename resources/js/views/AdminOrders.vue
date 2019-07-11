@@ -3,28 +3,40 @@
 
 <template>
   <section v-if="token" class="gipay-container">
-    <div>
-      <ul>
-        <li>
-          ID,
-          類型,
-          金額,
-          到,
-          從
-        </li>
-        <li v-for="order in orders">
-          {{ order.id }},
-          <span v-if="order.type === 1">存款,</span>
-          <span v-if="order.type === 2">取款,</span>
-          <span v-if="order.type === 3">轉帳,</span>
-          ${{ order.amount }},
-          {{ order.to.name }},
-          <span
-            v-if="order.type === 3"
-          >{{ order.from.name }}</span>
-        </li>
-      </ul>
-    </div>
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr data-id>
+          <th align="right">餘額</th>
+          <th align="center" class="table-align-center">類型</th>
+          <th align="center" class="table-align-center">動作名稱</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="order in orders" :key="order.id">
+          <th align="right">$ {{ order.amount }}</th>
+          <td align="center">
+            <span v-if="order.type === 1" class="tag is-success">存款</span>
+            <span v-if="order.type === 2" class="tag is-info">提款</span>
+            <span v-if="order.type === 3" class="tag is-warning">轉帳</span>
+          </td>
+          <td align>
+            <span v-if="order.type == 3" class="table__flex">
+              <span class="username">{{ order.from.name }}</span>
+              <span>轉帳給</span>
+              <span class="username">{{ order.to.name }}</span>
+              。
+            </span>
+            <span v-else>
+              <span class="username">{{ order.to.name }}</span>
+              <span v-if="order.type === 1">存款</span>
+              <span v-if="order.type === 2">提款</span>
+              <span v-if="order.type === 3">轉帳</span>
+              。
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 </template>
 
@@ -88,3 +100,19 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.table__flex {
+  display: flex;
+  align-items: center;
+
+  :nth-child(2) {
+    margin: 0 7px;
+  }
+}
+.username {
+  color: #6eb586;
+  font-weight: 700;
+}
+</style>
+
