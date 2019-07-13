@@ -2189,6 +2189,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/API.js */ "./resources/js/utilities/API.js");
 //
 //
 //
@@ -2230,6 +2231,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2245,13 +2247,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("https://gipay.xyz/api/admin/users", {
-      headers: {
-        Authorization: "Bearer ".concat(this.token),
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    }).then(function (response) {
+    _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__["default"].users.get(this.token).then(function (response) {
       _this.users = response.data.data;
     })["catch"](function (error) {
       console.log(error);
@@ -2260,13 +2256,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     setBlock: function setBlock(userId, userBlocked, userName) {
       var url = userBlocked === 0 ? "https://gipay.xyz/api/admin/unblock/user/".concat(userId) : "https://gipay.xyz/api/admin/block/user/".concat(userId);
-      axios.patch(url, {}, {
-        headers: {
-          Authorization: "Bearer ".concat(this.token),
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      })["catch"](function (error) {
+      _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__["default"].users.patch(url, {}, this.token)["catch"](function (error) {
         alert("操作失敗");
       });
     }
@@ -52219,6 +52209,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navigation_vue_vue_type_template_id_d456e682_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/utilities/API.js":
+/*!***************************************!*\
+  !*** ./resources/js/utilities/API.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var API_URL = 'https://gipay.xyz/api/admin';
+
+var API_HEADERS = function API_HEADERS(token) {
+  return {
+    headers: {
+      Authorization: "Bearer ".concat(token),
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
+    }
+  };
+};
+
+var users = {
+  get: function get(token) {
+    return axios.get("".concat(API_URL, "/users"), API_HEADERS(token));
+  },
+  patch: function patch(url) {
+    var obj = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var token = arguments.length > 2 ? arguments[2] : undefined;
+    return axios.patch(url, obj, API_HEADERS(token));
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  users: users
+});
 
 /***/ }),
 

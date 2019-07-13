@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import API from "../utilities/API.js";
+
 export default {
   data: function() {
     return {
@@ -53,14 +55,8 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get("https://gipay.xyz/api/admin/users", {
-        headers: {
-          Authorization: `Bearer ${this.token}`,
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      })
+    API.users
+      .get(this.token)
       .then(response => {
         this.users = response.data.data;
       })
@@ -74,21 +70,10 @@ export default {
         userBlocked === 0
           ? `https://gipay.xyz/api/admin/unblock/user/${userId}`
           : `https://gipay.xyz/api/admin/block/user/${userId}`;
-      axios
-        .patch(
-          url,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${this.token}`,
-              "Content-Type": "application/json",
-              Accept: "application/json"
-            }
-          }
-        )
-        .catch(function(error) {
-          alert("操作失敗");
-        });
+
+      API.users.patch(url, {}, this.token).catch(function(error) {
+        alert("操作失敗");
+      });
     }
   }
 };
