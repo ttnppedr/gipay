@@ -52223,7 +52223,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-var API_URL = 'https://gipay.xyz/api/admin';
+var API_URL = 'https://gipay.xyz/api';
 
 var API_HEADERS = function API_HEADERS(token) {
   return {
@@ -52237,7 +52237,7 @@ var API_HEADERS = function API_HEADERS(token) {
 
 var users = {
   get: function get(token) {
-    return axios.get("".concat(API_URL, "/users"), API_HEADERS(token));
+    return axios.get("".concat(API_URL, "/admin/users"), API_HEADERS(token));
   },
   patch: function patch(url) {
     var obj = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
