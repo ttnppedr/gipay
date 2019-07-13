@@ -20,6 +20,9 @@
             type="text"
             v-model="email"
             placeholder="abc@gmail.com"
+            autocomplete="off"
+            readonly
+            onfocus="this.removeAttribute('readonly');"
           />
         </div>
       </div>
@@ -33,6 +36,7 @@
             v-bind:class="errorClass"
             type="password"
             v-model="password"
+            autocomplete="off"
           />
         </div>
       </div>
