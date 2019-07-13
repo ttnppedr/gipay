@@ -2087,6 +2087,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/API.js */ "./resources/js/utilities/API.js");
 //
 //
 //
@@ -2129,6 +2130,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2144,13 +2146,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("https://gipay.xyz/api/admin/orders", {
-      headers: {
-        Authorization: "Bearer ".concat(this.token),
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    }).then(function (response) {
+    _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__["default"].orders.get(this.token).then(function (response) {
       _this.orders = response.data.data;
     })["catch"](function (error) {
       console.log(error);
@@ -52252,9 +52248,15 @@ var login = {
     });
   }
 };
+var orders = {
+  get: function get(token) {
+    return axios.get("".concat(API_URL, "/admin/orders"), API_HEADERS(token));
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   users: users,
-  login: login
+  login: login,
+  orders: orders
 });
 
 /***/ }),

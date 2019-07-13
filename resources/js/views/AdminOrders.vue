@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import API from "../utilities/API.js";
+
 export default {
   data: function() {
     return {
@@ -54,14 +56,8 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get("https://gipay.xyz/api/admin/orders", {
-        headers: {
-          Authorization: `Bearer ${this.token}`,
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      })
+    API.orders
+      .get(this.token)
       .then(response => {
         this.orders = response.data.data;
       })

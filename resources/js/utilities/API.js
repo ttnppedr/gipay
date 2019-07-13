@@ -22,7 +22,11 @@ const login = {
   })
 };
 
+const orders = {
+  get: token => axios.get(`${API_URL}/admin/orders`, API_HEADERS(token))
+};
 export default {
   users,
-  login
+  login,
+  orders
 };
