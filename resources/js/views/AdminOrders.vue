@@ -64,35 +64,6 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
-  },
-  methods: {
-    setBlock(userId, userBlocked, userName) {
-      let url =
-        userBlocked === 0
-          ? `/api/admin/unblock/user/${userId}`
-          : `/api/admin/block/user/${userId}`;
-      console.log(url);
-      axios
-        .patch(
-          url,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${this.token}`,
-              "Content-Type": "application/json",
-              Accept: "application/json"
-            }
-          }
-        )
-        .then(response => {
-          let msg = userName;
-          msg += userBlocked === 0 ? " 已解除凍結" : " 已凍結";
-          alert(msg);
-        })
-        .catch(function(error) {
-          alert("操作失敗");
-        });
-    }
   }
 };
 </script>

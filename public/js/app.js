@@ -2151,25 +2151,6 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
-  },
-  methods: {
-    setBlock: function setBlock(userId, userBlocked, userName) {
-      var url = userBlocked === 0 ? "/api/admin/unblock/user/".concat(userId) : "/api/admin/block/user/".concat(userId);
-      console.log(url);
-      axios.patch(url, {}, {
-        headers: {
-          Authorization: "Bearer ".concat(this.token),
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      }).then(function (response) {
-        var msg = userName;
-        msg += userBlocked === 0 ? " 已解除凍結" : " 已凍結";
-        alert(msg);
-      })["catch"](function (error) {
-        alert("操作失敗");
-      });
-    }
   }
 });
 
