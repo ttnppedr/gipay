@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import API from "../utilities/API.js";
+
 export default {
   data: function() {
     return {
@@ -79,11 +81,8 @@ export default {
   },
   methods: {
     login: function(event) {
-      axios
-        .post("https://gipay.xyz/api/login", {
-          email: this.email,
-          password: this.password
-        })
+      API.login
+        .post(this.email, this.password)
         .then(response => {
           console.log(response.data);
           if (response.data.message) {

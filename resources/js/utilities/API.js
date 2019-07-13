@@ -15,6 +15,14 @@ const users = {
   patch: (url, obj = {}, token) => axios.patch(url, obj, API_HEADERS(token))
 };
 
+const login = {
+  post: (email, password) => axios.post(`${API_URL}/login`, {
+    email,
+    password
+  })
+};
+
 export default {
-  users
+  users,
+  login
 };

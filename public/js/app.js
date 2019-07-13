@@ -1968,6 +1968,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/API.js */ "./resources/js/utilities/API.js");
 //
 //
 //
@@ -2022,6 +2023,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2050,10 +2052,7 @@ __webpack_require__.r(__webpack_exports__);
     login: function login(event) {
       var _this = this;
 
-      axios.post("https://gipay.xyz/api/login", {
-        email: this.email,
-        password: this.password
-      }).then(function (response) {
+      _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__["default"].login.post(this.email, this.password).then(function (response) {
         console.log(response.data);
 
         if (response.data.message) {
@@ -52245,8 +52244,17 @@ var users = {
     return axios.patch(url, obj, API_HEADERS(token));
   }
 };
+var login = {
+  post: function post(email, password) {
+    return axios.post("".concat(API_URL, "/login"), {
+      email: email,
+      password: password
+    });
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
-  users: users
+  users: users,
+  login: login
 });
 
 /***/ }),
