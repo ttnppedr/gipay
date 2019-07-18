@@ -15,7 +15,7 @@
           <td align="center">
             <span class="tag is-info" v-if="user.admin">Admin</span>
           </td>
-          <td>{{ user.name }}</td>
+          <th class="userName" @click="toggleLightbox">{{ user.name }}</th>
           <th align="right">$ {{ user.balance }}</th>
           <td align="center">{{ user.password_errors }}</td>
           <td align="center">
@@ -36,17 +36,24 @@
         </tr>
       </tbody>
     </table>
+    <Lightbox v-if="modalStatus" @closeModal="toggleLightbox"></Lightbox>
   </section>
 </template>
 
 <script>
 import API from "../utilities/API.js";
+import Lightbox from "../components/Lightbox";
 
 export default {
+  components: {
+    Lightbox
+  },
   data: function() {
     return {
       token: window.$cookies.get("token"),
-      users: []
+      users: [],
+      modalStatus: false,
+      userID: {}
     };
   },
   created() {
@@ -65,6 +72,12 @@ export default {
       });
   },
   methods: {
+    toggleLightbox() {
+      this.modalStatus = !this.modalStatus;
+    },
+    setUserId(id) {
+      this.userData.userID = id;
+    },
     setBlock(userId, userBlocked, userName) {
       let url =
         userBlocked === 0
@@ -78,3 +91,12 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.userName {
+  &:hover {
+    color: #209cee;
+    cursor: pointer;
+  }
+}
+</style>
