@@ -6829,7 +6829,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".admin-info[data-v-d456e682] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (max-width: 1024px) {\n.admin-info[data-v-d456e682] {\n    justify-content: flex-start;\n    line-height: 1.5;\n    margin-bottom: 20px;\n}\n}\n.admin-info__avatar[data-v-d456e682] {\n  font-size: 0;\n}\n.admin-info__avatar img[data-v-d456e682] {\n  border-radius: 50%;\n}\n.admin-info__name[data-v-d456e682] {\n  margin-left: 1em;\n  margin-right: 1em;\n}", ""]);
+exports.push([module.i, ".admin-info[data-v-d456e682] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (max-width: 1024px) {\n.admin-info[data-v-d456e682] {\n    display: none;\n}\n}\n.admin-info__avatar[data-v-d456e682] {\n  font-size: 0;\n}\n.admin-info__avatar img[data-v-d456e682] {\n  border-radius: 50%;\n}\n.admin-info__name[data-v-d456e682] {\n  margin-left: 1em;\n  margin-right: 1em;\n}\n@media screen and (max-width: 1024px) {\n.admin-logout[data-v-d456e682] {\n    background: #fff;\n    width: 100%;\n    border-radius: 0;\n    justify-content: flex-start;\n    margin: 0;\n    padding: 0;\n    padding-top: 5px;\n    border-top: 1px solid #ddd;\n}\n}", ""]);
 
 // exports
 
@@ -39410,7 +39410,7 @@ var render = function() {
                     "div",
                     { staticClass: "buttons", on: { click: _vm.logout } },
                     [
-                      _c("a", { staticClass: "button is-light" }, [
+                      _c("a", { staticClass: "button is-light admin-logout" }, [
                         _vm._v(_vm._s(_vm.loginStatusMsg))
                       ])
                     ]

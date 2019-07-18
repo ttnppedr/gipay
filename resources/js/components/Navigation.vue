@@ -36,7 +36,7 @@
             <div class="admin-info__name">{{ adminInfo.name }}</div>
           </div>
           <div class="buttons" @click="logout">
-            <a class="button is-light">{{ loginStatusMsg }}</a>
+            <a class="button is-light admin-logout">{{ loginStatusMsg }}</a>
           </div>
         </div>
       </div>
@@ -104,9 +104,7 @@ export default {
   align-items: center;
 
   @media screen and (max-width: 1024px) {
-    justify-content: flex-start;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    display: none;
   }
 
   &__avatar {
@@ -119,6 +117,19 @@ export default {
   &__name {
     margin-left: 1em;
     margin-right: 1em;
+  }
+}
+
+.admin-logout {
+  @media screen and (max-width: 1024px) {
+    background: #fff;
+    width: 100%;
+    border-radius: 0;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    padding-top: 5px;
+    border-top: 1px solid #ddd;
   }
 }
 </style>
