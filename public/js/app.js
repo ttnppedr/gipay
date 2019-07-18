@@ -1927,6 +1927,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -39352,31 +39353,33 @@ var render = function() {
           _c("img", { attrs: { src: _vm.logo } })
         ]),
         _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "navbar-burger burger",
-            class: { "is-active": _vm.menuStatus },
-            attrs: {
-              role: "button",
-              "aria-label": "menu",
-              "aria-expanded": "false",
-              "data-target": "navbarBasicExample"
-            },
-            on: {
-              click: function($event) {
-                _vm.menuStatus = !_vm.menuStatus
-              }
-            }
-          },
-          [
-            _c("span", { attrs: { "aria-hidden": "true" } }),
-            _vm._v(" "),
-            _c("span", { attrs: { "aria-hidden": "true" } }),
-            _vm._v(" "),
-            _c("span", { attrs: { "aria-hidden": "true" } })
-          ]
-        )
+        _vm.token
+          ? _c(
+              "a",
+              {
+                staticClass: "navbar-burger burger",
+                class: { "is-active": _vm.menuStatus },
+                attrs: {
+                  role: "button",
+                  "aria-label": "menu",
+                  "aria-expanded": "false",
+                  "data-target": "navbarBasicExample"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.menuStatus = !_vm.menuStatus
+                  }
+                }
+              },
+              [
+                _c("span", { attrs: { "aria-hidden": "true" } }),
+                _vm._v(" "),
+                _c("span", { attrs: { "aria-hidden": "true" } }),
+                _vm._v(" "),
+                _c("span", { attrs: { "aria-hidden": "true" } })
+              ]
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _vm.token

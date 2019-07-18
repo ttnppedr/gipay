@@ -13,6 +13,7 @@
         aria-expanded="false"
         data-target="navbarBasicExample"
         @click="menuStatus = !menuStatus"
+        v-if="token"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
