@@ -15,7 +15,7 @@
           <td align="center">
             <span class="tag is-info" v-if="user.admin">Admin</span>
           </td>
-          <th class="userName" @click="toggleLightbox">{{ user.name }}</th>
+          <th class="userName" @click="getUserData(user.id)">{{ user.name }}</th>
           <th align="right">$ {{ user.balance }}</th>
           <td align="center">{{ user.password_errors }}</td>
           <td align="center">
@@ -36,33 +36,38 @@
         </tr>
       </tbody>
     </table>
-    <Lightbox v-if="modalStatus" @closeModal="toggleLightbox"></Lightbox>
+    <Lightbox
+      v-if="modalStatus"
+      @closeModal="toggleLightbox"
+      :userPersonalDetails="userPersonalDetails"
+    ></Lightbox>
   </section>
 </template>
 
 <script>
-import API from "../utilities/API.js";
-import Lightbox from "../components/Lightbox";
+import API from '../utilities/API.js';
+import Lightbox from '../components/Lightbox';
 
 export default {
   components: {
-    Lightbox
+    Lightbox,
   },
   data: function() {
     return {
-      token: window.$cookies.get("token"),
+      token: window.$cookies.get('token'),
       users: [],
       modalStatus: false,
-      userID: {}
+      userID: {},
+      userPersonalDetails: '',
     };
   },
   created() {
     if (this.token === null) {
-      window.location.replace("/admin-login");
+      window.location.replace('/admin-login');
     }
   },
   mounted() {
-    API.users
+    API.users.list
       .get(this.token)
       .then(response => {
         this.users = response.data.data;
@@ -74,6 +79,20 @@ export default {
   methods: {
     toggleLightbox() {
       this.modalStatus = !this.modalStatus;
+      this.userPersonalDetail = '';
+    },
+    async getUserData(id) {
+      // open lightbox
+      this.toggleLightbox();
+      try {
+        // get an user's data
+        await API.users.userData.get(this.token, id).then(response => {
+          console.log(response.data);
+          this.userPersonalDetails = response.data;
+        });
+      } catch (e) {
+        console.error('error', e);
+      }
     },
     setUserId(id) {
       this.userData.userID = id;
@@ -84,19 +103,19 @@ export default {
           ? `https://gipay.xyz/api/admin/unblock/user/${userId}`
           : `https://gipay.xyz/api/admin/block/user/${userId}`;
 
-      API.users.patch(url, {}, this.token).catch(function(error) {
-        alert("操作失敗");
+      API.users.list.patch(url, {}, this.token).catch(function(error) {
+        alert('操作失敗');
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.userName {
-  &:hover {
-    color: #209cee;
-    cursor: pointer;
+  .userName {
+    &:hover {
+      color: #209cee;
+      cursor: pointer;
+    }
   }
-}
 </style>

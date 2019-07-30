@@ -1,6 +1,6 @@
 <template>
   <div class="gipay-container">
-    <form class="admin-login__form">
+    <form class="admin-login__form" name="loginForm">
       <section class="hero">
         <div class="hero-body">
           <div class="container">
@@ -45,7 +45,7 @@
           <button class="button is-primary" @click.prevent="login">Login</button>
         </div>
         <div class="control">
-          <button class="button is-light" type="reset">Reset</button>
+          <button class="button is-light" type="reset" @="resetLoginValue">Reset</button>
         </div>
       </div>
     </form>
@@ -53,31 +53,31 @@
 </template>
 
 <script>
-import API from "../utilities/API.js";
+import API from '../utilities/API.js';
 
 export default {
   data: function() {
     return {
       error: {
         isError: 0,
-        errMessage: ""
+        errMessage: '',
       },
-      email: "",
-      password: ""
+      email: '',
+      password: '',
     };
   },
   computed: {
     errorClass: function() {
       return {
-        "is-danger": this.error.isError === 1
+        'is-danger': this.error.isError === 1,
       };
     },
     token() {
-      return window.$cookies.get("token");
-    }
+      return window.$cookies.get('token');
+    },
   },
   mounted() {
-    if (this.token) window.location.href = "/home";
+    if (this.token) window.location.href = '/home';
   },
   methods: {
     login: function(event) {
@@ -93,38 +93,43 @@ export default {
           }
           if (!response.data.user.admin) {
             this.error.isError = 1;
-            this.error.errMessage = "您並非是後台管理者，請聯絡工程師。";
+            this.error.errMessage = '您並非是後台管理者，請聯絡工程師。';
             return;
           }
-          window.$cookies.set("token", response.data.token);
-          window.location.href = "/home";
+          window.$cookies.set('token', response.data.token);
+          window.location.href = '/home';
         })
         .catch(error => {
           console.log(error);
         });
-    }
-  }
+    },
+    resetLoginValue() {
+      document.forms[loginForm].reset();
+      // document.getElementById('adminUsername').value = '';
+      // document.getElementById('adminPassWord').value = '';
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.admin-login {
-  background: rgba(255, 255, 255, 0.5);
-  min-height: calc(100vh - 52px);
-  padding-top: 45px;
+  .admin-login {
+    background: rgba(255, 255, 255, 0.5);
+    min-height: calc(100vh - 52px);
+    padding-top: 45px;
 
-  &__form {
-    max-width: 400px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 0px 30px 45px;
-    border-radius: 10px;
-    text-align: left;
-    box-shadow: 0px 12px 15px -5px #b2d0cd;
+    &__form {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0px 30px 45px;
+      border-radius: 10px;
+      text-align: left;
+      box-shadow: 0px 12px 15px -5px #b2d0cd;
 
-    section {
-      text-align: center;
+      section {
+        text-align: center;
+      }
     }
   }
-}
 </style>

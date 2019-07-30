@@ -11,8 +11,13 @@ const API_HEADERS = token => ({
 });
 
 const users = {
-  get: token => axios.get(`${API_URL}/admin/users`, API_HEADERS(token)),
-  patch: (url, obj = {}, token) => axios.patch(url, obj, API_HEADERS(token))
+  list: {
+    get: token => axios.get(`${API_URL}/admin/users`, API_HEADERS(token)),
+    patch: (url, obj = {}, token) => axios.patch(url, obj, API_HEADERS(token))
+  },
+  userData: {
+    get: (token, id) => axios.get(`${API_URL}/admin/users/${id}`, API_HEADERS(token))
+  }
 };
 
 const login = {
