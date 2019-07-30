@@ -11858,6 +11858,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/API.js */ "./resources/js/utilities/API.js");
 //
 //
 //
@@ -11880,12 +11881,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TabWithdraw',
   props: {
     userId: {
       type: Number,
       "default": 1
+    }
+  },
+  data: function data() {
+    return {
+      token: window.$cookies.get('token')
+    };
+  },
+  methods: {
+    withdrawMoney: function withdrawMoney() {
+      try {
+        _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__["default"].orders.post.withdraw(this.token, this.userId, this.$refs.amount.value).then(function (response) {
+          console.log(response);
+        });
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 });
@@ -49738,10 +49756,10 @@ var render = function() {
     _c("div", { staticClass: "field has-addons" }, [
       _c("div", { staticClass: "control has-icons-left is-expanded" }, [
         _c("input", {
+          ref: "amount",
           staticClass: "input",
           attrs: {
             type: "number",
-            id: "amount",
             placeholder: "ex: 100",
             min: "1",
             max: "1000000"
@@ -49760,7 +49778,16 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _c("p", { staticClass: "control" }, [
+        _c(
+          "button",
+          {
+            staticClass: "button is-primary",
+            on: { click: _vm.withdrawMoney }
+          },
+          [_vm._v("送出")]
+        )
+      ])
     ])
   ])
 }
@@ -49775,14 +49802,6 @@ var staticRenderFns = [
           _vm._v("輸入金額")
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "control" }, [
-      _c("button", { staticClass: "button is-primary" }, [_vm._v("送出")])
     ])
   }
 ]
@@ -63033,10 +63052,10 @@ var orders = {
     return axios.get("".concat(API_URL, "/admin/orders"), API_HEADERS(token));
   },
   post: {
-    withdraw: function withdraw(id, amount) {
+    withdraw: function withdraw(token, id, amount) {
       return axios.post("".concat(API_URL, "/withdraw/").concat(id), {
         amount: amount
-      });
+      }, API_HEADERS(token));
     }
   }
 };

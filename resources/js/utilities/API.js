@@ -30,9 +30,9 @@ const login = {
 const orders = {
   get: token => axios.get(`${API_URL}/admin/orders`, API_HEADERS(token)),
   post: {
-    withdraw: (id, amount) => axios.post(`${API_URL}/withdraw/${id}`, {
+    withdraw: (token, id, amount) => axios.post(`${API_URL}/withdraw/${id}`, {
       amount
-    })
+    }, API_HEADERS(token))
   }
 };
 export default {
