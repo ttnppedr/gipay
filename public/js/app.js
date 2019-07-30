@@ -12025,9 +12025,7 @@ __webpack_require__.r(__webpack_exports__);
       error: {
         isError: 0,
         errMessage: ''
-      },
-      email: '',
-      password: ''
+      }
     };
   },
   computed: {
@@ -12047,7 +12045,7 @@ __webpack_require__.r(__webpack_exports__);
     login: function login(event) {
       var _this = this;
 
-      _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__["default"].login.post(this.email, this.password).then(function (response) {
+      _utilities_API_js__WEBPACK_IMPORTED_MODULE_0__["default"].login.post(this.$refs.email.value, this.$refs.password.value).then(function (response) {
         console.log(response.data);
 
         if (response.data.message) {
@@ -12067,10 +12065,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    resetLoginValue: function resetLoginValue() {
-      document.forms[loginForm].reset(); // document.getElementById('adminUsername').value = '';
-      // document.getElementById('adminPassWord').value = '';
     }
   }
 });
@@ -49890,14 +49884,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "control" }, [
             _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.email,
-                  expression: "email"
-                }
-              ],
+              ref: "email",
               staticClass: "input",
               class: _vm.errorClass,
               attrs: {
@@ -49907,15 +49894,6 @@ var render = function() {
                 autocomplete: "off",
                 readonly: "",
                 onfocus: "this.removeAttribute('readonly');"
-              },
-              domProps: { value: _vm.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.email = $event.target.value
-                }
               }
             })
           ])
@@ -49930,29 +49908,13 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "control" }, [
             _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.password,
-                  expression: "password"
-                }
-              ],
+              ref: "password",
               staticClass: "input",
               class: _vm.errorClass,
               attrs: {
                 id: "adminPassWord",
                 type: "password",
                 autocomplete: "off"
-              },
-              domProps: { value: _vm.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.password = $event.target.value
-                }
               }
             })
           ])

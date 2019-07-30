@@ -18,7 +18,7 @@
             class="input"
             v-bind:class="errorClass"
             type="text"
-            v-model="email"
+            ref="email"
             placeholder="abc@gmail.com"
             autocomplete="off"
             readonly
@@ -35,7 +35,7 @@
             class="input"
             v-bind:class="errorClass"
             type="password"
-            v-model="password"
+            ref="password"
             autocomplete="off"
           />
         </div>
@@ -62,8 +62,6 @@ export default {
         isError: 0,
         errMessage: '',
       },
-      email: '',
-      password: '',
     };
   },
   computed: {
@@ -82,7 +80,7 @@ export default {
   methods: {
     login: function(event) {
       API.login
-        .post(this.email, this.password)
+        .post(this.$refs.email.value, this.$refs.password.value)
         .then(response => {
           console.log(response.data);
           if (response.data.message) {
@@ -102,11 +100,6 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
-    resetLoginValue() {
-      document.forms[loginForm].reset();
-      // document.getElementById('adminUsername').value = '';
-      // document.getElementById('adminPassWord').value = '';
     },
   },
 };
