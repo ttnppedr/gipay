@@ -28,6 +28,7 @@ Route::post('/deposit/{toUser}', 'AdminController@deposit');
 Route::post('/withdraw/{toUser}', 'AdminController@withdraw');
 
 Route::get('/admin/users', 'UserController@index');
+Route::get('/admin/users/{user}', 'UserController@show');
 Route::patch('/admin/block/user/{user}', 'UserController@block');
 Route::patch('/admin/unblock/user/{user}', 'UserController@unblock');
 Route::get('/orders/{user}', 'UserController@indexOrder');

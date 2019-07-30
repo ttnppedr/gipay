@@ -31,6 +31,16 @@ class UserController extends Controller
         return User::paginate($row)->appends(['row' => $row]);
     }
 
+    public function show(User $user)
+    {
+        $token = request()->bearerToken();
+        if (!$token || !Token::where('token', $token)->exists()) {
+            return ['message' => 'token error'];
+        }
+
+        return $user;
+    }
+
     public function block(User $user)
     {
         $token = request()->bearerToken();
