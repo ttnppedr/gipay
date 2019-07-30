@@ -2425,17 +2425,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      token: window.$cookies.get("token"),
+      token: window.$cookies.get('token'),
       orders: []
     };
   },
   created: function created() {
     if (this.token === null) {
-      window.location.replace("/admin-login");
+      window.location.replace('/admin-login');
     }
   },
   mounted: function mounted() {
@@ -2470,6 +2478,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -40241,11 +40257,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.token
     ? _c("section", { staticClass: "gipay-container" }, [
+        _vm._m(0),
+        _vm._v(" "),
         _c(
           "table",
           { staticClass: "table is-striped is-hoverable is-fullwidth" },
           [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "tbody",
@@ -40322,6 +40340,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "hero is-small" }, [
+      _c("div", { staticClass: "hero-body" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("h1", { staticClass: "title is-4" }, [_vm._v("帳務紀錄")]),
+          _vm._v(" "),
+          _c("h2", { staticClass: "subtitle is-5" }, [
+            _vm._v("查看所有會員的帳務紀錄，分為三種類型：存款、提款、轉帳。")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { attrs: { "data-id": "" } }, [
         _c("th", { attrs: { align: "right" } }, [_vm._v("餘額")]),
@@ -40367,11 +40401,13 @@ var render = function() {
         "section",
         { staticClass: "gipay-container" },
         [
+          _vm._m(0),
+          _vm._v(" "),
           _c(
             "table",
             { staticClass: "table is-striped is-hoverable is-fullwidth" },
             [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -40493,6 +40529,22 @@ var render = function() {
     : _vm._e()
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "hero is-small" }, [
+      _c("div", { staticClass: "hero-body" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("h1", { staticClass: "title is-4" }, [_vm._v("會員列表")]),
+          _vm._v(" "),
+          _c("h2", { staticClass: "subtitle is-t" }, [
+            _vm._v("查看單一會員的資料，並可針對其新增存款、提款、轉帳。")
+          ])
+        ])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

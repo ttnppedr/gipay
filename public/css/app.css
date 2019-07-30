@@ -10,10 +10,14 @@
   padding-top: 45px;
 }
 
+.gipay-container .hero,
 .gipay-container .table {
-  border-radius: 5px;
   max-width: 768px;
   margin: 0 auto;
+}
+
+.gipay-container .table {
+  border-radius: 5px;
 }
 
 .gipay-container .table [type=checkbox] {

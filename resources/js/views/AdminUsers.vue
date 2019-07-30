@@ -1,5 +1,13 @@
 <template>
   <section v-if="token" class="gipay-container">
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-4">會員列表</h1>
+          <h2 class="subtitle is-t">查看單一會員的資料，並可針對其新增存款、提款、轉帳。</h2>
+        </div>
+      </div>
+    </section>
     <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr data-id>
