@@ -1872,6 +1872,9 @@ module.exports = function isBuffer (obj) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TabDeposit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TabDeposit */ "./resources/js/components/TabDeposit.vue");
+/* harmony import */ var _TabTransfer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TabTransfer */ "./resources/js/components/TabTransfer.vue");
+/* harmony import */ var _TabWithdraw__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TabWithdraw */ "./resources/js/components/TabWithdraw.vue");
 //
 //
 //
@@ -1937,8 +1940,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Lightbox',
+  data: function data() {
+    return {
+      currentTab: 'Deposit',
+      actions: [{
+        component: 'Deposit',
+        actionTitle: '存款'
+      }, {
+        component: 'Withdraw',
+        actionTitle: '提款'
+      }, {
+        component: 'Transfer',
+        actionTitle: '轉帳'
+      }]
+    };
+  },
   props: {
     userPersonalDetails: {
       type: Object | String,
@@ -1949,10 +1979,18 @@ __webpack_require__.r(__webpack_exports__);
     userAccountName: function userAccountName() {
       console.log("".concat(this.userPersonalDetails.name, " (").concat(this.userPersonalDetails.email, ")"));
       return this.userPersonalDetails ? "".concat(this.userPersonalDetails.name, " (").concat(this.userPersonalDetails.email, ")") : '';
+    },
+    currentTabComponent: function currentTabComponent() {
+      return 'tab-' + this.currentTab.toLowerCase();
     }
   },
   methods: {
     closeModal: function closeModal() {}
+  },
+  components: {
+    TabTransfer: _TabTransfer__WEBPACK_IMPORTED_MODULE_1__["default"],
+    TabWithdraw: _TabWithdraw__WEBPACK_IMPORTED_MODULE_2__["default"],
+    TabDeposit: _TabDeposit__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -2107,6 +2145,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       window.location.replace('/admin-login');
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabDeposit.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TabDeposit.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'TabDeposit'
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabTransfer.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TabTransfer.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'TabTransfer'
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabWithdraw.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TabWithdraw.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'TabWithdraw'
 });
 
 /***/ }),
@@ -6998,7 +7093,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".normal-data[data-v-069fbbe0] {\n  font-size: 12px;\n}\nh2[data-v-069fbbe0] {\n  font-weight: 700;\n  font-size: 18px;\n  line-height: 1.5;\n  align-items: center;\n  display: flex;\n}\n.user[data-v-069fbbe0] {\n  line-height: 1.75;\n}\n.user__group[data-v-069fbbe0] {\n  margin-bottom: 1em;\n}\n.user__inline-group + .user__inline-group[data-v-069fbbe0] {\n  margin-left: 10px;\n}\n\n/* override Bulma */\n.tile.is-ancestor[data-v-069fbbe0]:not(:last-child) {\n  margin-bottom: 0;\n}\n.title[data-v-069fbbe0]:not(:last-child) {\n  margin-bottom: 0.5rem;\n}\n.modal-card-title .tag[data-v-069fbbe0] {\n  margin-right: 0.5rem;\n}", ""]);
+exports.push([module.i, ".normal-data[data-v-069fbbe0] {\n  font-size: 12px;\n}\nh2[data-v-069fbbe0] {\n  font-weight: 700;\n  font-size: 18px;\n  line-height: 1.5;\n  align-items: center;\n  display: flex;\n}\n.user[data-v-069fbbe0] {\n  line-height: 1.75;\n}\n.user__group[data-v-069fbbe0] {\n  margin-bottom: 1em;\n}\n.user__inline-group + .user__inline-group[data-v-069fbbe0] {\n  margin-left: 10px;\n}\n\n/* override Bulma */\n.tile.is-ancestor[data-v-069fbbe0]:not(:last-child) {\n  margin-bottom: 0;\n}\n.title[data-v-069fbbe0]:not(:last-child) {\n  margin-bottom: 0.5rem;\n}\n.modal-card-title .tag[data-v-069fbbe0] {\n  margin-right: 0.5rem;\n}\n.notification a[data-v-069fbbe0]:not(.button):not(.dropdown-item) {\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -39689,31 +39784,46 @@ var render = function() {
                       "article",
                       { staticClass: "tile is-child notification is-light" },
                       [
-                        _c("div", { staticClass: "title is-4" }, [
-                          _vm._v(
-                            "\n                      $" +
-                              _vm._s(_vm.userPersonalDetails.balance) +
-                              "\n                      "
-                          ),
+                        _c("h2", { staticClass: "title is-4 has-text-link" }, [
+                          _vm._v("$" + _vm._s(_vm.userPersonalDetails.balance))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "tabs is-boxed is-small" }, [
                           _c(
-                            "button",
-                            {
-                              staticClass:
-                                "button is-small is-primary is-rounded"
-                            },
-                            [_vm._v("存款")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "button is-small is-primary is-rounded"
-                            },
-                            [_vm._v("轉帳")]
+                            "ul",
+                            _vm._l(_vm.actions, function(action) {
+                              return _c(
+                                "li",
+                                {
+                                  key: action.component,
+                                  class: [
+                                    {
+                                      "is-active":
+                                        _vm.currentTab === action.component
+                                    }
+                                  ],
+                                  on: {
+                                    click: function($event) {
+                                      _vm.currentTab = action.component
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("a", [
+                                    _c("span", {}, [
+                                      _vm._v(_vm._s(action.actionTitle))
+                                    ])
+                                  ])
+                                ]
+                              )
+                            }),
+                            0
                           )
-                        ])
-                      ]
+                        ]),
+                        _vm._v(" "),
+                        _c(_vm.currentTabComponent, { tag: "component" })
+                      ],
+                      1
                     )
                   ])
                 ])
@@ -39849,6 +39959,78 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabDeposit.vue?vue&type=template&id=ed8fe518&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TabDeposit.vue?vue&type=template&id=ed8fe518& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("存款")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabTransfer.vue?vue&type=template&id=0f412185&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TabTransfer.vue?vue&type=template&id=0f412185& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("轉帳")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabWithdraw.vue?vue&type=template&id=1f9e65b8&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TabWithdraw.vue?vue&type=template&id=1f9e65b8& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("提款")])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -52786,6 +52968,213 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navigation_vue_vue_type_template_id_d456e682_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navigation_vue_vue_type_template_id_d456e682_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TabDeposit.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/TabDeposit.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TabDeposit_vue_vue_type_template_id_ed8fe518___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TabDeposit.vue?vue&type=template&id=ed8fe518& */ "./resources/js/components/TabDeposit.vue?vue&type=template&id=ed8fe518&");
+/* harmony import */ var _TabDeposit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TabDeposit.vue?vue&type=script&lang=js& */ "./resources/js/components/TabDeposit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TabDeposit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TabDeposit_vue_vue_type_template_id_ed8fe518___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TabDeposit_vue_vue_type_template_id_ed8fe518___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TabDeposit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TabDeposit.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/TabDeposit.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TabDeposit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TabDeposit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabDeposit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TabDeposit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TabDeposit.vue?vue&type=template&id=ed8fe518&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/TabDeposit.vue?vue&type=template&id=ed8fe518& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabDeposit_vue_vue_type_template_id_ed8fe518___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TabDeposit.vue?vue&type=template&id=ed8fe518& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabDeposit.vue?vue&type=template&id=ed8fe518&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabDeposit_vue_vue_type_template_id_ed8fe518___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabDeposit_vue_vue_type_template_id_ed8fe518___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TabTransfer.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/TabTransfer.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TabTransfer_vue_vue_type_template_id_0f412185___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TabTransfer.vue?vue&type=template&id=0f412185& */ "./resources/js/components/TabTransfer.vue?vue&type=template&id=0f412185&");
+/* harmony import */ var _TabTransfer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TabTransfer.vue?vue&type=script&lang=js& */ "./resources/js/components/TabTransfer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TabTransfer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TabTransfer_vue_vue_type_template_id_0f412185___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TabTransfer_vue_vue_type_template_id_0f412185___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TabTransfer.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TabTransfer.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/TabTransfer.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TabTransfer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TabTransfer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabTransfer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TabTransfer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TabTransfer.vue?vue&type=template&id=0f412185&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/TabTransfer.vue?vue&type=template&id=0f412185& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabTransfer_vue_vue_type_template_id_0f412185___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TabTransfer.vue?vue&type=template&id=0f412185& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabTransfer.vue?vue&type=template&id=0f412185&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabTransfer_vue_vue_type_template_id_0f412185___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabTransfer_vue_vue_type_template_id_0f412185___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TabWithdraw.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/TabWithdraw.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TabWithdraw_vue_vue_type_template_id_1f9e65b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TabWithdraw.vue?vue&type=template&id=1f9e65b8& */ "./resources/js/components/TabWithdraw.vue?vue&type=template&id=1f9e65b8&");
+/* harmony import */ var _TabWithdraw_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TabWithdraw.vue?vue&type=script&lang=js& */ "./resources/js/components/TabWithdraw.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TabWithdraw_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TabWithdraw_vue_vue_type_template_id_1f9e65b8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TabWithdraw_vue_vue_type_template_id_1f9e65b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TabWithdraw.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TabWithdraw.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/TabWithdraw.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TabWithdraw_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TabWithdraw.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabWithdraw.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TabWithdraw_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TabWithdraw.vue?vue&type=template&id=1f9e65b8&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/TabWithdraw.vue?vue&type=template&id=1f9e65b8& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabWithdraw_vue_vue_type_template_id_1f9e65b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TabWithdraw.vue?vue&type=template&id=1f9e65b8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TabWithdraw.vue?vue&type=template&id=1f9e65b8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabWithdraw_vue_vue_type_template_id_1f9e65b8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabWithdraw_vue_vue_type_template_id_1f9e65b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

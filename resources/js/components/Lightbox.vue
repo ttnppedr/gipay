@@ -42,13 +42,22 @@
                 <div class="tile">
                   <div class="tile is-parent is-vertical">
                     <article class="tile is-child notification is-light">
-                      <div class="title is-4">
-                        ${{ userPersonalDetails.balance }}
-                        <button
-                          class="button is-small is-primary is-rounded"
-                        >存款</button>
-                        <button class="button is-small is-primary is-rounded">轉帳</button>
+                      <h2 class="title is-4 has-text-link">${{ userPersonalDetails.balance }}</h2>
+                      <div class="tabs is-boxed is-small">
+                        <ul>
+                          <li
+                            v-for="action in actions"
+                            :key="action.component"
+                            :class="[{ 'is-active': currentTab === action.component }]"
+                            @click="currentTab = action.component"
+                          >
+                            <a>
+                              <span class>{{ action.actionTitle }}</span>
+                            </a>
+                          </li>
+                        </ul>
                       </div>
+                      <component :is="currentTabComponent"></component>
                     </article>
                   </div>
                 </div>
@@ -64,8 +73,22 @@
 </template>
 
 <script>
+import TabDeposit from './TabDeposit';
+import TabTransfer from './TabTransfer';
+import TabWithdraw from './TabWithdraw';
+
 export default {
   name: 'Lightbox',
+  data() {
+    return {
+      currentTab: 'Deposit',
+      actions: [
+        { component: 'Deposit', actionTitle: '存款' },
+        { component: 'Withdraw', actionTitle: '提款' },
+        { component: 'Transfer', actionTitle: '轉帳' },
+      ],
+    };
+  },
   props: {
     userPersonalDetails: {
       type: Object | String,
@@ -81,9 +104,17 @@ export default {
         ? `${this.userPersonalDetails.name} (${this.userPersonalDetails.email})`
         : '';
     },
+    currentTabComponent() {
+      return 'tab-' + this.currentTab.toLowerCase();
+    },
   },
   methods: {
     closeModal() {},
+  },
+  components: {
+    TabTransfer,
+    TabWithdraw,
+    TabDeposit,
   },
 };
 </script>
@@ -123,5 +154,9 @@ export default {
     .tag {
       margin-right: 0.5rem;
     }
+  }
+
+  .notification a:not(.button):not(.dropdown-item) {
+    text-decoration: none;
   }
 </style>
