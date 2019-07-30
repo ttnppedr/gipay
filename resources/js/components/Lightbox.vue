@@ -57,7 +57,7 @@
                           </li>
                         </ul>
                       </div>
-                      <component :is="currentTabComponent"></component>
+                      <component :is="currentTabComponent" :user-id="userPersonalDetails.id"></component>
                     </article>
                   </div>
                 </div>

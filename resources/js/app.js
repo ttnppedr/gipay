@@ -6,10 +6,26 @@
 
 import VueCookies from 'vue-cookies';
 import 'bulma/css/bulma.css';
-
-require('./bootstrap');
+import {
+  library
+} from '@fortawesome/fontawesome-svg-core';
+import {
+  faDollarSign
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome';
 
 window.Vue = require('vue');
+
+library.add(faDollarSign);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+Vue.config.productionTip = false;
+
+
+require('./bootstrap');
 
 /**
  * The following block of code may be used to automatically register your

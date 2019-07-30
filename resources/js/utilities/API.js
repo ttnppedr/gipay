@@ -28,7 +28,12 @@ const login = {
 };
 
 const orders = {
-  get: token => axios.get(`${API_URL}/admin/orders`, API_HEADERS(token))
+  get: token => axios.get(`${API_URL}/admin/orders`, API_HEADERS(token)),
+  post: {
+    withdraw: (id, amount) => axios.post(`${API_URL}/withdraw/${id}`, {
+      amount
+    })
+  }
 };
 export default {
   users,
