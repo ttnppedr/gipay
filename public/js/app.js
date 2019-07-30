@@ -1977,7 +1977,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     userAccountName: function userAccountName() {
-      console.log("".concat(this.userPersonalDetails.name, " (").concat(this.userPersonalDetails.email, ")"));
       return this.userPersonalDetails ? "".concat(this.userPersonalDetails.name, " (").concat(this.userPersonalDetails.email, ")") : '';
     },
     currentTabComponent: function currentTabComponent() {
@@ -2581,7 +2580,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 1;
                 _context.next = 4;
                 return _utilities_API_js__WEBPACK_IMPORTED_MODULE_1__["default"].users.userData.get(this.token, id).then(function (response) {
-                  console.log(response.data);
                   _this2.userPersonalDetails = response.data;
                 });
 

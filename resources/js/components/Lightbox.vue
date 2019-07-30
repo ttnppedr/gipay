@@ -97,9 +97,6 @@ export default {
   },
   computed: {
     userAccountName() {
-      console.log(
-        `${this.userPersonalDetails.name} (${this.userPersonalDetails.email})`
-      );
       return this.userPersonalDetails
         ? `${this.userPersonalDetails.name} (${this.userPersonalDetails.email})`
         : '';

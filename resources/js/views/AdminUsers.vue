@@ -95,7 +95,6 @@ export default {
       try {
         // get an user's data
         await API.users.userData.get(this.token, id).then(response => {
-          console.log(response.data);
           this.userPersonalDetails = response.data;
         });
       } catch (e) {
