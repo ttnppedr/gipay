@@ -45,14 +45,14 @@
 </template>
 
 <script>
-import logo from "../../images/logo.svg";
+import logo from '../../images/logo.svg';
 export default {
   data: function() {
     return {
-      token: window.$cookies.get("token"),
+      token: window.$cookies.get('token'),
       logo: logo,
-      adminInfo: "",
-      menuStatus: false
+      adminInfo: '',
+      menuStatus: false,
     };
   },
   created() {
@@ -60,76 +60,76 @@ export default {
   },
   computed: {
     loginStatusMsg() {
-      return this.token ? "登出" : "登入";
-    }
+      return this.token ? '登出' : '登入';
+    },
   },
   methods: {
     async getAdminInfo() {
       // 初始化，登入中才拿管理者資訊
-      if (!this.token && window.location.pathname !== "/admin-login") {
-        window.location.replace("/admin-login");
+      if (!this.token && window.location.pathname !== '/admin-login') {
+        window.location.replace('/admin-login');
       }
       try {
-        const adminInfo = await axios.get("https://gipay.xyz/api/info", {
+        const adminInfo = await axios.get('https://gipay.xyz/api/info', {
           headers: {
             Authorization: `Bearer ${this.token}`,
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          }
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
         });
 
-        if (adminInfo.data.message === "token error") {
+        if (adminInfo.data.message === 'token error') {
           this.logout();
           return;
         }
 
         this.adminInfo = adminInfo.data;
       } catch (e) {
-        console.log("error", e);
+        console.log('error', e);
       }
     },
     logout() {
       if (!this.token) return;
-      window.$cookies.remove("token");
-      window.location.replace("/admin-login");
-    }
-  }
+      window.$cookies.remove('token');
+      window.location.replace('/admin-login');
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.admin-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .admin-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  @media screen and (max-width: 1024px) {
-    display: none;
-  }
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
 
-  &__avatar {
-    font-size: 0;
-    img {
-      border-radius: 50%;
+    &__avatar {
+      font-size: 0;
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    &__name {
+      margin-left: 1em;
+      margin-right: 1em;
     }
   }
 
-  &__name {
-    margin-left: 1em;
-    margin-right: 1em;
+  .admin-logout {
+    @media screen and (max-width: 1024px) {
+      background: #fff;
+      width: 100%;
+      border-radius: 0;
+      justify-content: flex-start;
+      margin: 0;
+      padding: 0;
+      padding-top: 5px;
+      border-top: 1px solid #ddd;
+    }
   }
-}
-
-.admin-logout {
-  @media screen and (max-width: 1024px) {
-    background: #fff;
-    width: 100%;
-    border-radius: 0;
-    justify-content: flex-start;
-    margin: 0;
-    padding: 0;
-    padding-top: 5px;
-    border-top: 1px solid #ddd;
-  }
-}
 </style>

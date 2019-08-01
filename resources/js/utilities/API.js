@@ -11,8 +11,13 @@ const API_HEADERS = token => ({
 });
 
 const users = {
-  get: token => axios.get(`${API_URL}/admin/users`, API_HEADERS(token)),
-  patch: (url, obj = {}, token) => axios.patch(url, obj, API_HEADERS(token))
+  list: {
+    get: token => axios.get(`${API_URL}/admin/users`, API_HEADERS(token)),
+    patch: (url, obj = {}, token) => axios.patch(url, obj, API_HEADERS(token))
+  },
+  userData: {
+    get: (token, id) => axios.get(`${API_URL}/admin/users/${id}`, API_HEADERS(token))
+  }
 };
 
 const login = {
@@ -23,7 +28,12 @@ const login = {
 };
 
 const orders = {
-  get: token => axios.get(`${API_URL}/admin/orders`, API_HEADERS(token))
+  get: token => axios.get(`${API_URL}/admin/orders`, API_HEADERS(token)),
+  post: {
+    withdraw: (token, id, amount) => axios.post(`${API_URL}/withdraw/${id}`, {
+      amount
+    }, API_HEADERS(token))
+  }
 };
 export default {
   users,

@@ -3,6 +3,14 @@
 
 <template>
   <section v-if="token" class="gipay-container">
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-4">帳務紀錄</h1>
+          <h2 class="subtitle is-5">查看所有會員的帳務紀錄，分為三種類型：存款、提款、轉帳。</h2>
+        </div>
+      </div>
+    </section>
     <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr data-id>
@@ -41,18 +49,18 @@
 </template>
 
 <script>
-import API from "../utilities/API.js";
+import API from '../utilities/API.js';
 
 export default {
   data: function() {
     return {
-      token: window.$cookies.get("token"),
-      orders: []
+      token: window.$cookies.get('token'),
+      orders: [],
     };
   },
   created() {
     if (this.token === null) {
-      window.location.replace("/admin-login");
+      window.location.replace('/admin-login');
     }
   },
   mounted() {
@@ -64,22 +72,22 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.table__flex {
-  display: flex;
-  align-items: center;
+  .table__flex {
+    display: flex;
+    align-items: center;
 
-  :nth-child(2) {
-    margin: 0 7px;
+    :nth-child(2) {
+      margin: 0 7px;
+    }
   }
-}
-.username {
-  color: #6eb586;
-  font-weight: 700;
-}
+  .username {
+    color: #6eb586;
+    font-weight: 700;
+  }
 </style>
 
